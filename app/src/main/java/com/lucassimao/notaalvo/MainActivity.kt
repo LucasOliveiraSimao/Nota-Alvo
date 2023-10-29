@@ -28,6 +28,11 @@ class MainActivity : AppCompatActivity() {
                 updateTextView()
             }
         }
+
+        binding.btnErase.setOnClickListener {
+            model.erase()
+            updateTextView()
+        }
     }
 
     private fun updateTextView() {
