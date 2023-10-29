@@ -33,6 +33,11 @@ class MainActivity : AppCompatActivity() {
             model.erase()
             updateTextView()
         }
+
+        binding.btnAllErase.setOnClickListener {
+            model.clear()
+            updateTextView()
+        }
     }
 
     private fun updateTextView() {

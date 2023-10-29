@@ -16,4 +16,8 @@ class CalculatorModel {
             grade = grade.substring(0, grade.length - 1)
         }
     }
+
+    fun clear(){
+        grade = ""
+    }
 }
