@@ -1,23 +1,40 @@
 package com.lucassimao.notaalvo
 
-class CalculatorModel {
-    private var grade = ""
+import com.lucassimao.notaalvo.Constants.IDEAL_SCORE
+import com.lucassimao.notaalvo.Constants.MULTIPLIER_VALUE
+import kotlin.math.abs
 
-    fun getGrade(): String {
-        return grade
+class CalculatorModel {
+    private var score = ""
+
+    fun getScore(): String {
+        return score
     }
 
     fun addNumber(number: String) {
-        grade += number
+        score += number
     }
 
     fun erase() {
-        if (grade.isNotEmpty()) {
-            grade = grade.substring(0, grade.length - 1)
+        if (score.isNotEmpty()) {
+            score = score.substring(0, score.length - 1)
         }
     }
 
-    fun clear(){
-        grade = ""
+    fun clear() {
+        score = ""
     }
+
+    fun convert(): Double {
+        return if (score.isNotEmpty()) {
+            score.toDouble()
+        } else {
+            0.0
+        }
+    }
+
+    fun calculate(score: Double): Double {
+        return abs(IDEAL_SCORE - (score * MULTIPLIER_VALUE))
+    }
+
 }
