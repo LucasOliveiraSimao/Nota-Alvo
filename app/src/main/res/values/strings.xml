@@ -9,4 +9,6 @@
     <string name="msg_2">Apenas os alunos com MEE >= 8 está dispensado da Prova Final. O discente que esteja abaixo de 8
                         não será dispensado de realizar a PF, e caso não faça a Prova Final, não terá nota</string>
     <string name="msg_3">Infelizmente você não tem nenhuma chance de ser aprovado</string>
+    <string name="close">Fechar</string>
+    <string name="msg_4">A nota exigida para a aprovação na Prova Final é: %1$s</string>
 </resources>
