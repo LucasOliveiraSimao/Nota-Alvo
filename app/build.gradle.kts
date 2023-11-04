@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    id("com.github.triplet.play")
 }
 
 android {
@@ -38,6 +39,10 @@ android {
     viewBinding {
         enable = true
     }
+}
+
+play {
+    serviceAccountCredentials.set(file("service-account.json"))
 }
 
 dependencies {
