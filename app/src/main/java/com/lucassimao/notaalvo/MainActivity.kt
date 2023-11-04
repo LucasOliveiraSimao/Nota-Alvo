@@ -73,6 +73,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
         binding.btnAllErase.setOnClickListener {
             model.clear()
             updateTextView()
