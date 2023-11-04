@@ -90,3 +90,4 @@ jobs:
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: production
           status: 'completed'
+        run: ./gradlew publishBundle
