@@ -51,8 +51,6 @@ class MainActivity : AppCompatActivity() {
             updateTextView()
         }
 
-
-
         binding.btnAllErase.setOnClickListener {
             model.clearUserScore()
             updateTextView()
