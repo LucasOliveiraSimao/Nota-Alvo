@@ -8,17 +8,20 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
+    <EditText
         android:id="@+id/txtResult"
         style="@style/textResult"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:hint="ME"
-        android:maxLength="4"
+        android:enabled="false"
         android:paddingTop="16dp"
-        android:paddingRight="16dp"
+        android:paddingEnd="16dp"
         android:textColorHint="@color/black"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        tools:ignore="HardcodedText,RtlSymmetry"
+        android:autofillHints="null"
+        android:inputType="number" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +33,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/purple_700" />
+            android:background="@color/purple_700"
+            tools:ignore="NestedWeights" />
 
     </LinearLayout>
 
@@ -123,13 +127,10 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/btnPoint"
-            style="@style/buttonsNumbers"
-            android:text="." />
-
-        <TextView
             android:id="@+id/btnZero"
             style="@style/buttonsNumbers"
+            android:layout_width="0dp"
+            android:layout_weight="2"
             android:text="0" />
 
         <ImageView
