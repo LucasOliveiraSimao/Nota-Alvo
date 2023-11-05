@@ -87,6 +87,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
     }
 
     private fun clearUserScore() {
