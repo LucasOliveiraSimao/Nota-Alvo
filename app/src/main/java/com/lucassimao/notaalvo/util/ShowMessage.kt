@@ -1,12 +1,14 @@
-package com.lucassimao.notaalvo
+package com.lucassimao.notaalvo.util
 
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
+import com.lucassimao.notaalvo.CalculatorModel
 import com.lucassimao.notaalvo.Constants.APPROVED_STUDENT
 import com.lucassimao.notaalvo.Constants.FAILED_STUDENT
 import com.lucassimao.notaalvo.Constants.NEEDS_EXAM_FOR_APPROVAL
 import com.lucassimao.notaalvo.Constants.NEEDS_FINAL_EXAM
+import com.lucassimao.notaalvo.R
 
 @SuppressLint("StringFormatMatches")
 fun Activity.showMessage(title: Int, code: Int, grade: Double?, close: () -> Unit) {
@@ -25,7 +27,7 @@ fun Activity.showMessage(title: Int, code: Int, grade: Double?, close: () -> Uni
         NEEDS_EXAM_FOR_APPROVAL -> {
             alert.setMessage(
                 getString(
-                    R.string.msg_4, CalculatorModel().calculate(
+                    R.string.msg_4, CalculatorModel().calculateScoreDifference(
                         grade!!
                     )
                 )
