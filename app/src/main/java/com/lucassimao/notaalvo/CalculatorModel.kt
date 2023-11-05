@@ -2,38 +2,39 @@ package com.lucassimao.notaalvo
 
 import com.lucassimao.notaalvo.Constants.IDEAL_SCORE
 import com.lucassimao.notaalvo.Constants.MULTIPLIER_VALUE
+import com.lucassimao.notaalvo.util.addTwoDecimalPlaces
 import kotlin.math.abs
 
 class CalculatorModel {
-    private var score = ""
+    private var userScore = ""
 
-    fun getScore(): String {
-        return score
+    fun getUserScore(): String {
+        return userScore
     }
 
-    fun addNumber(number: String) {
-        score += number
+    fun appendToUserScore(value: String) {
+        userScore += value
     }
 
-    fun erase() {
-        if (score.isNotEmpty()) {
-            score = score.substring(0, score.length - 1)
+    fun eraseLastCharacter() {
+        if (userScore.isNotEmpty()) {
+            userScore = userScore.substring(0, userScore.length - 1)
         }
     }
 
-    fun clear() {
-        score = ""
+    fun clearUserScore() {
+        userScore = ""
     }
 
-    fun convert(): Double {
-        return if (score.isNotEmpty()) {
-            score.toDouble()
+    fun convertUserScoreToDouble(): Double {
+        return if (userScore.isNotEmpty()) {
+            userScore.toDouble().addTwoDecimalPlaces()
         } else {
             0.0
         }
     }
 
-    fun calculate(score: Double): Double {
+    fun calculateScoreDifference(score: Double): Double {
         return abs(IDEAL_SCORE - (score * MULTIPLIER_VALUE))
     }
 
