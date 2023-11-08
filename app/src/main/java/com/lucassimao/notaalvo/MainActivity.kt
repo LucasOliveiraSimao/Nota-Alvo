@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             val score = model.convertUserScoreToDouble()
             checkAndDisplayResult(score)
         }
+
     }
 
     private fun setupButtonListeners() {
@@ -49,8 +50,6 @@ class MainActivity : AppCompatActivity() {
             model.eraseLastCharacter()
             updateTextView()
         }
-
-
 
         binding.btnAllErase.setOnClickListener {
             model.clearUserScore()
@@ -88,6 +87,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
     }
 
     private fun clearUserScore() {
