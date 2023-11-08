@@ -3,6 +3,9 @@ package com.lucassimao.notaalvo.util
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.TextView
 import com.lucassimao.notaalvo.CalculatorModel
 import com.lucassimao.notaalvo.Constants.APPROVED_STUDENT
 import com.lucassimao.notaalvo.Constants.FAILED_STUDENT
@@ -12,30 +15,34 @@ import com.lucassimao.notaalvo.R
 
 @SuppressLint("StringFormatMatches")
 fun Activity.showMessage(title: Int, code: Int, grade: Double?, close: () -> Unit) {
+
+    val inflater = LayoutInflater.from(this)
+    val messageView: View = inflater.inflate(R.layout.custom_alert_dialog, null)
+    val textViewMessage = messageView.findViewById<TextView>(R.id.textViewMessage)
+
     val alert = AlertDialog.Builder(this)
+    alert.setView(messageView)
     alert.setTitle(getString(title))
 
     when (code) {
         APPROVED_STUDENT -> {
-            alert.setMessage(getString(R.string.msg_1))
+            textViewMessage.text = getString(R.string.msg_1)
         }
 
         NEEDS_FINAL_EXAM -> {
-            alert.setMessage(getString(R.string.msg_2))
+            textViewMessage.text = getString(R.string.msg_2)
         }
 
         NEEDS_EXAM_FOR_APPROVAL -> {
-            alert.setMessage(
-                getString(
-                    R.string.msg_4, CalculatorModel().calculateScoreDifference(
-                        grade!!
-                    )
+            textViewMessage.text = getString(
+                R.string.msg_4, CalculatorModel().calculateScoreDifference(
+                    grade!!
                 )
             )
         }
 
         FAILED_STUDENT -> {
-            alert.setMessage(getString(R.string.msg_3))
+            textViewMessage.text = getString(R.string.msg_3)
         }
     }
 
