@@ -1,25 +1,25 @@
-name: Android CI
+name: Android Build
 
 on:
   pull_request:
     branches: [ "develop" ]
 
 jobs:
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the code
-        uses: actions/checkout@v3
-
-      - name: Upload test report
-        uses: actions/upload-artifact@v2
-        with:
-          name: lint-results-debug.html
-          path: app/build/reports/lint-results-debug.html
+#  lint:
+#    name: Lint
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout the code
+#        uses: actions/checkout@v3
+#
+#      - name: Upload test report
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: lint-results-debug.html
+#          path: app/build/reports/lint-results-debug.html
 
   unit-test:
-    needs: [lint]
+#    needs: [lint]
     name: Unit Test
     runs-on: ubuntu-latest
     steps:
