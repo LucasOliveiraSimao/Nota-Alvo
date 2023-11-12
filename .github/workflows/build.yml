@@ -5,25 +5,24 @@ on:
     branches: [ "develop" ]
 
 jobs:
-#  lint:
-#    name: Lint
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout the code
-#        uses: actions/checkout@v3
-#
-#      - name: Upload test report
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: lint-results-debug.html
-#          path: app/build/reports/lint-results-debug.html
-
-  unit-test:
-#    needs: [lint]
-    name: Unit Test
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
+        uses: actions/checkout@v3
+
+      - name: Upload test report
+        uses: actions/upload-artifact@v2
+        with:
+          name: lint-results-debug.html
+          path: app/build/reports/lint-results-debug.html
+
+  unit-test:
+    needs: [lint]
+    name: Unit Test
+    runs-on: windows-latest
+    steps:
       - uses: actions/checkout@v3
 
       - name: set up JDK 17
