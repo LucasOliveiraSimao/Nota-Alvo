@@ -18,7 +18,7 @@
         android:paddingTop="16dp"
         android:paddingEnd="16dp"
         android:textColorHint="@color/black"
-        android:textSize="36sp"
+        android:textSize="28sp"
         tools:ignore="HardcodedText,RtlSymmetry"
         android:autofillHints="null"
         android:inputType="number" />
