@@ -3,9 +3,11 @@ Nota Alvo é um aplicativo Android projetado para auxiliar os alunos da Universi
 
 ## Projeto desenvolvido utilizando:
 
- - Kotlin
- - Testes Unitários (JUnit e Mockk)
- - Conceitos de Continuous Integration (CI) e Continuous Delivery (CD)
+ - Kotlin.
+ - Testes Unitários (JUnit e Mockk).
+ - Conceitos de Continuous Integration (CI) e Continuous Delivery (CD) para automatizar o processo de integração e entrega do código.
+ - Firebase Analytics para monitorar o desempenho da aplicação, coletar dados sobre o uso e o comportamento dos usuários.
+ - Firebase Crashlytics para rastrear e relatar automaticamente falhas e crashes na aplicação.
 
 ## Funcionalidades
 O aplicativo permite que o aluno insira sua média final, com base nesse dado, o aplicativo calcula automaticamente a nota necessária na prova final para obter a aprovação na disciplina.
