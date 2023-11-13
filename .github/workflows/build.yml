@@ -69,7 +69,7 @@ jobs:
 
   package:
     needs: [unit-test]
-    name: Generate APK
+    name: Generate AAB
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
@@ -91,4 +91,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: app-release.aab
-          path: app/release/app-release.aab
+          path: app/build/outputs/bundle/release/app-release.aab
