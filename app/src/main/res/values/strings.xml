@@ -11,4 +11,14 @@
     <string name="msg_3">Infelizmente você não tem nenhuma chance de ser aprovado</string>
     <string name="close">Fechar</string>
     <string name="msg_4">A nota exigida para a aprovação na Prova Final é: %1$s</string>
+    <string name="equals">=</string>
+    <string name="zero">0</string>
+    <string name="erase_all">C</string>
+    <string name="number_3">3</string>
+    <string name="number_2">2</string>
+    <string name="number_1">1</string>
+    <string name="number_6">6</string>
+    <string name="number_5">5</string>
+    <string name="number_4">4</string>
+    <string name="number_9">9</string>
 </resources>
