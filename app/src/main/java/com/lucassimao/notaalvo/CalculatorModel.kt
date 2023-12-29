@@ -3,6 +3,7 @@ package com.lucassimao.notaalvo
 import com.lucassimao.notaalvo.Constants.IDEAL_SCORE
 import com.lucassimao.notaalvo.Constants.MULTIPLIER_VALUE
 import com.lucassimao.notaalvo.util.addTwoDecimalPlaces
+import com.lucassimao.notaalvo.util.formatDoubleWithComma
 import kotlin.math.abs
 
 class CalculatorModel {
@@ -34,8 +35,8 @@ class CalculatorModel {
         }
     }
 
-    fun calculateScoreDifference(score: Double): Double {
-        return abs(IDEAL_SCORE - (score * MULTIPLIER_VALUE))
+    fun calculateScoreDifference(score: Double): String {
+        return abs(IDEAL_SCORE - (score * MULTIPLIER_VALUE)).formatDoubleWithComma()
     }
 
 }
