@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
     <!-- Cor do texto nos botões numéricos -->
     <color name="number_button_color">#786C6C</color>
     <!-- Cor de fundo dos botões numéricos -->
