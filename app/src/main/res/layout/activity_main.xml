@@ -10,57 +10,35 @@
 
     <EditText
         android:id="@+id/txtResult"
-        style="@style/textResult"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:hint="@string/enter_your_average"
+        style="@style/AppTextViewResult"
+        android:background="@android:color/transparent"
         android:enabled="false"
-        android:paddingTop="16dp"
-        android:paddingEnd="16dp"
-        android:textColorHint="@color/black"
-        android:textSize="28sp"
-        tools:ignore="HardcodedText,RtlSymmetry"
-        android:autofillHints="null"
-        android:inputType="number" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.8"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/purple_700"
-            tools:ignore="NestedWeights" />
-
-    </LinearLayout>
+        android:hint="ME" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <TextView
             android:id="@+id/btnSeven"
-            style="@style/buttonsNumbers"
+            style="@style/AppNumbersButton"
             android:text="7" />
 
         <TextView
             android:id="@+id/btnEigth"
-            style="@style/buttonsNumbers"
+            style="@style/AppNumbersButton"
             android:text="8" />
 
         <TextView
             android:id="@+id/btnNine"
-            style="@style/buttonsNumbers"
-            android:text="9" />
+            style="@style/AppNumbersButton"
+            android:text="@string/number_9" />
 
         <TextView
-            style="@style/buttonsNumbers"
+            style="@style/AppNumbersButton"
             android:text="" />
 
     </LinearLayout>
@@ -73,21 +51,21 @@
 
         <TextView
             android:id="@+id/btnFour"
-            style="@style/buttonsNumbers"
-            android:text="4" />
+            style="@style/AppNumbersButton"
+            android:text="@string/number_4" />
 
         <TextView
             android:id="@+id/btnFive"
-            style="@style/buttonsNumbers"
-            android:text="5" />
+            style="@style/AppNumbersButton"
+            android:text="@string/number_5" />
 
         <TextView
             android:id="@+id/btnSix"
-            style="@style/buttonsNumbers"
-            android:text="6" />
+            style="@style/AppNumbersButton"
+            android:text="@string/number_6" />
 
         <TextView
-            style="@style/buttonsNumbers"
+            style="@style/AppNumbersButton"
             android:text="" />
 
     </LinearLayout>
@@ -100,23 +78,23 @@
 
         <TextView
             android:id="@+id/btnOne"
-            style="@style/buttonsNumbers"
-            android:text="1" />
+            style="@style/AppNumbersButton"
+            android:text="@string/number_1" />
 
         <TextView
             android:id="@+id/btnTwo"
-            style="@style/buttonsNumbers"
-            android:text="2" />
+            style="@style/AppNumbersButton"
+            android:text="@string/number_2" />
 
         <TextView
             android:id="@+id/btnThree"
-            style="@style/buttonsNumbers"
-            android:text="3" />
+            style="@style/AppNumbersButton"
+            android:text="@string/number_3" />
 
         <TextView
             android:id="@+id/btnAllErase"
-            style="@style/buttonsNumbers"
-            android:text="C" />
+            style="@style/AppNumberButtonEraseAll"
+            android:text="@string/erase_all" />
 
     </LinearLayout>
 
@@ -128,21 +106,19 @@
 
         <TextView
             android:id="@+id/btnZero"
-            style="@style/buttonsNumbers"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:text="0" />
+            style="@style/AppNumbersButton"
+            android:layout_weight="0.5"
+            android:text="@string/zero" />
 
         <ImageView
             android:id="@+id/btnErase"
-            style="@style/buttonsNumbers"
-            android:scaleType="center"
-            android:src="@drawable/backspace" />
+            style="@style/AppIcon"
+            android:src="@drawable/ic_backspace" />
 
         <TextView
             android:id="@+id/btnEquals"
-            style="@style/buttonsNumbers"
-            android:text="=" />
+            style="@style/AppNumberButtonEquals"
+            android:text="@string/equals" />
 
     </LinearLayout>
 

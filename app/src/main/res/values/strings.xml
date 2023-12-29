@@ -5,6 +5,16 @@
     <string name="msg_aviso">Aviso</string>
     <string name="msg_reprovado">Reprovado</string>
     <string name="close">Fechar</string>
+    <string name="equals">=</string>
+    <string name="zero">0</string>
+    <string name="erase_all">C</string>
+    <string name="number_3">3</string>
+    <string name="number_2">2</string>
+    <string name="number_1">1</string>
+    <string name="number_6">6</string>
+    <string name="number_5">5</string>
+    <string name="number_4">4</string>
+    <string name="number_9">9</string>
 
     <string name="msg_1">Você passou na disciplina.</string>
 
@@ -16,4 +26,5 @@
 
     <string name="msg_4">A nota necessária para a aprovação na Prova Final é: %1$s.</string>
     <string name="enter_your_average">Digite sua média (MEE)</string>
+
 </resources>

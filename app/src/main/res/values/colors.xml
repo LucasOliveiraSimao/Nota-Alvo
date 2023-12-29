@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <!-- Cor do texto nos botões numéricos -->
+    <color name="number_button_color">#786C6C</color>
+    <!-- Cor de fundo dos botões numéricos -->
+    <color name="number_button_background">#FEFEFE</color>
+    <!-- Cor de fundo do botão iqual -->
+    <color name="equals_button_background">#469536</color>
+    <!-- Cor de fundo do botão apagar tudo -->
+    <color name="erase_all_button_background">#ffa500</color>
+    <!-- Cor quando um botão é pressionado -->
+    <color name="_button_pressed_color">#B3BFC0</color>
+    <!-- Cor do texto nas caixas de texto -->
+    <color name="text_view_text_color">#000000</color>
 </resources>
