@@ -5,7 +5,6 @@
     <string name="msg_aviso">Aviso</string>
     <string name="msg_reprovado">Reprovado</string>
     <string name="close">Fechar</string>
-    <string name="msg_4">A nota exigida para a aprovação na Prova Final é: %1$s</string>
     <string name="equals">=</string>
     <string name="zero">0</string>
     <string name="erase_all">C</string>
