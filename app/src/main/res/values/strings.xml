@@ -25,6 +25,7 @@
     <string name="msg_3">Lamentavelmente, as chances de você ser aprovado são inexistentes.</string>
 
     <string name="msg_4">A nota necessária para a aprovação na Prova Final é: %1$s.</string>
-    <string name="enter_your_average">Digite sua média (MEE)</string>
+    <string name="enter_your_average">Digite sua média (ME)</string>
+    <string name="erase">Apagar</string>
 
 </resources>
