@@ -26,12 +26,12 @@
         <TextView
             android:id="@+id/btnSeven"
             style="@style/AppNumbersButton"
-            android:text="7" />
+            android:text="@string/number_7" />
 
         <TextView
             android:id="@+id/btnEigth"
             style="@style/AppNumbersButton"
-            android:text="8" />
+            android:text="@string/number_8" />
 
         <TextView
             android:id="@+id/btnNine"
