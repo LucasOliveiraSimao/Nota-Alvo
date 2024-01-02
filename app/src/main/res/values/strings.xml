@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Nota Alvo</string>
     <string name="msg_parabens">Parabéns</string>
-    <string name="msg_alerta">Alerta</string>
     <string name="msg_aviso">Aviso</string>
     <string name="msg_reprovado">Reprovado</string>
     <string name="close">Fechar</string>
@@ -25,6 +24,9 @@
     <string name="msg_3">Lamentavelmente, as chances de você ser aprovado são inexistentes.</string>
 
     <string name="msg_4">A nota necessária para a aprovação na Prova Final é: %1$s.</string>
-    <string name="enter_your_average">Digite sua média (MEE)</string>
+    <string name="enter_your_average">Digite sua média (ME)</string>
+    <string name="erase">Apagar</string>
+    <string name="number_7">7</string>
+    <string name="number_8">8</string>
 
 </resources>
