@@ -26,5 +26,10 @@
 
     <string name="msg_4">A nota necessária para a aprovação na Prova Final é: %1$s.</string>
     <string name="enter_your_average">Digite sua média (MEE)</string>
+    <string name="intro_one_text_1">Bem-vindo ao Nota Alvo!</string>
+    <string name="intro_one_text_2">Desbrave a vida acadêmica com facilidade. Esta ferramenta foi criada especialmente para os alunos da UFAM, tornando seus desafios mais simples.</string>
+    <string name="intro_two_text_1">Insira sua média (ME) disponível no eCampus para começar.</string>
+    <string name="done">Finalizar</string>
+    <string name="skip">Pular</string>
 
 </resources>
