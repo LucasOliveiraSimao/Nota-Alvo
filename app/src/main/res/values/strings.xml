@@ -1,19 +1,20 @@
 <resources>
     <string name="app_name">Nota Alvo</string>
     <string name="msg_parabens">Parabéns</string>
-    <string name="msg_alerta">Alerta</string>
     <string name="msg_aviso">Aviso</string>
     <string name="msg_reprovado">Reprovado</string>
     <string name="close">Fechar</string>
     <string name="equals">=</string>
     <string name="zero">0</string>
     <string name="erase_all">C</string>
-    <string name="number_3">3</string>
-    <string name="number_2">2</string>
     <string name="number_1">1</string>
+    <string name="number_2">2</string>
+     <string name="number_3">3</string>
     <string name="number_6">6</string>
     <string name="number_5">5</string>
     <string name="number_4">4</string>
+    <string name="number_7">7</string>
+    <string name="number_8">8</string>
     <string name="number_9">9</string>
 
     <string name="msg_1">Você passou na disciplina.</string>
@@ -25,11 +26,13 @@
     <string name="msg_3">Lamentavelmente, as chances de você ser aprovado são inexistentes.</string>
 
     <string name="msg_4">A nota necessária para a aprovação na Prova Final é: %1$s.</string>
-    <string name="enter_your_average">Digite sua média (MEE)</string>
+
     <string name="intro_one_text_1">Bem-vindo ao Nota Alvo!</string>
     <string name="intro_one_text_2">Desbrave a vida acadêmica com facilidade. Esta ferramenta foi criada especialmente para os alunos da UFAM, tornando seus desafios mais simples.</string>
     <string name="intro_two_text_1">Insira sua média (ME) disponível no eCampus para começar.</string>
     <string name="done">Finalizar</string>
     <string name="skip">Pular</string>
-
+    <string name="enter_your_average">Digite sua média (ME)</string>
+    <string name="erase">Apagar</string>
+   
 </resources>
