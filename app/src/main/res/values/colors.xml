@@ -11,7 +11,15 @@
     <!-- Cor de fundo do botão apagar tudo -->
     <color name="erase_all_button_background">#ffa500</color>
     <!-- Cor quando um botão é pressionado -->
-    <color name="_button_pressed_color">#B3BFC0</color>
+    <color name="button_pressed_color">#B3BFC0</color>
     <!-- Cor do texto nas caixas de texto -->
     <color name="text_view_text_color">#000000</color>
+    <!-- Cor do botão pular -->
+    <color name="skip_button">#000000</color>
+    <!-- Cor do text finalizar -->
+    <color name="done_text">#000000</color>
+    <!-- Cor da seta -->
+    <color name="next_arrow">#000000</color>
+    <color name="selected_indicator">#000000</color>
+    <color name="unselected_indicator">#B3BFC0</color>
 </resources>

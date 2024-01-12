@@ -47,6 +47,8 @@ play {
 
 dependencies {
 
+    implementation("com.github.AppIntro:AppIntro:6.3.1")
+
     implementation(platform("com.google.firebase:firebase-bom:32.1.0"))
 
     implementation("com.google.firebase:firebase-crashlytics-ktx")
