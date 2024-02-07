@@ -14,26 +14,20 @@
 
     <TextView
         android:id="@+id/textView"
-        style="@style/TextAppearance.AppCompat.Display1"
+        style="@style/AppTitleIntroOne"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:gravity="center"
         android:text="@string/intro_one_text_1"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
         android:id="@+id/textView2"
-        style="@style/TextAppearance.AppCompat.Large"
+        style="@style/AppDescriptionIntroOne"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:gravity="center"
         android:text="@string/intro_one_text_2"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

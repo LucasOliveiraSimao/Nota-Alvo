@@ -59,44 +59,55 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkAndDisplayResult(value: Double) {
         return when (value) {
-            in 11.0..100.0 -> {
+            in 10.01..100.0 -> {
                 return
             }
 
-            in 8.0..10.0 -> showMessage(R.string.msg_parabens, APPROVED_STUDENT, null) {
-                clearUserScore()
-                updateTextView()
+            in 8.0..10.0 -> showMessage(
+                R.string.msg_parabens,
+                APPROVED_STUDENT,
+                null
+            ) {
+                clearUserScoreAndTextView()
             }
 
-            in 7.5..7.99 -> showMessage(R.string.msg_aviso, NEEDS_FINAL_EXAM, null) {
-                clearUserScore()
-                updateTextView()
+            in 7.5..7.99 -> showMessage(
+                R.string.msg_aviso,
+                NEEDS_FINAL_EXAM,
+                null
+            ) {
+                clearUserScoreAndTextView()
             }
 
             in 2.5..7.49 -> {
-                showMessage(R.string.msg_aviso, NEEDS_EXAM_FOR_APPROVAL, value) {
-                    clearUserScore()
-                    updateTextView()
-                }
+                showMessage(
+                    R.string.msg_aviso,
+                    NEEDS_EXAM_FOR_APPROVAL,
+                    value
+                ) { clearUserScoreAndTextView() }
             }
 
             else -> {
-                showMessage(R.string.msg_reprovado, FAILED_STUDENT, null) {
-                    clearUserScore()
-                    updateTextView()
+                showMessage(
+                    R.string.msg_reprovado,
+                    FAILED_STUDENT,
+                    null
+                ) {
+                    clearUserScoreAndTextView()
                 }
             }
         }
 
     }
 
-    private fun clearUserScore() {
+    private fun clearUserScoreAndTextView() {
         model.clearUserScore()
+        updateTextView()
     }
-
 
     private fun updateTextView() {
         val score = model.getUserScore()
         binding.txtResult.setText(score)
     }
+
 }

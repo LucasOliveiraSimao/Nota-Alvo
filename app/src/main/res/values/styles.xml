@@ -36,6 +36,45 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/text_view_result_height</item>
         <item name="android:paddingEnd">@dimen/text_view_result_padding_end</item>
+    </style>
 
+    <style name="AppTitleIntroOne">
+        <item name="android:layout_margin">@dimen/title_intro_one_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/title_intro_one_text_size</item>
+        <item name="android:textColor">@color/title_intro_one_color</item>
+    </style>
+
+    <style name="AppDescriptionIntroOne">
+        <item name="android:layout_margin">@dimen/description_intro_one_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/description_intro_one_text_size</item>
+        <item name="android:textColor">@color/description_intro_one_color</item>
+    </style>
+
+    <style name="AppTitleIntroTwo">
+        <item name="android:layout_margin">@dimen/title_intro_two_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/title_intro_two_text_size</item>
+        <item name="android:textColor">@color/title_intro_two_color</item>
+    </style>
+
+    <style name="AppImageIntroTwo">
+        <item name="android:layout_marginTop">@dimen/image_intro_two_margin_top</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:src">@drawable/img_intro_1</item>
+    </style>
+
+    <style name="AppTitleIntroThree">
+        <item name="android:layout_margin">@dimen/title_intro_three_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/title_intro_three_text_size</item>
+        <item name="android:textColor">@color/title_intro_three_color</item>
+    </style>
+
+    <style name="AppImageIntroThree">
+        <item name="android:layout_marginTop">@dimen/image_intro_three_margin_top</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:src">@drawable/img_intro_2</item>
     </style>
 </resources>
