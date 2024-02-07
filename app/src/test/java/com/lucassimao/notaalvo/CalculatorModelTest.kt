@@ -2,7 +2,7 @@ package com.lucassimao.notaalvo
 
 import com.lucassimao.notaalvo.Constants.IDEAL_SCORE
 import com.lucassimao.notaalvo.Constants.MULTIPLIER_VALUE
-import com.lucassimao.notaalvo.util.formatDoubleWithComma
+import com.lucassimao.notaalvo.util.formatDoubleWithTwoDecimalPlaces
 import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
@@ -111,7 +111,7 @@ class CalculatorModelTest {
         every { calculator.calculateScoreDifference(any()) } returns "4,40"
         val result = calculator.calculateScoreDifference(score)
 
-        val expected = kotlin.math.abs(IDEAL_SCORE - (score * MULTIPLIER_VALUE)).formatDoubleWithComma()
+        val expected = kotlin.math.abs(IDEAL_SCORE - (score * MULTIPLIER_VALUE)).formatDoubleWithTwoDecimalPlaces()
 
 //        assertEquals(expected, result)
     }
