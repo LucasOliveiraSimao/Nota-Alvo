@@ -2,24 +2,31 @@
 <resources>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <!-- Cor do texto nos botões numéricos -->
+
     <color name="number_button_color">#786C6C</color>
-    <!-- Cor de fundo dos botões numéricos -->
+
     <color name="number_button_background">#FEFEFE</color>
-    <!-- Cor de fundo do botão iqual -->
+
     <color name="equals_button_background">#469536</color>
-    <!-- Cor de fundo do botão apagar tudo -->
+
     <color name="erase_all_button_background">#ffa500</color>
-    <!-- Cor quando um botão é pressionado -->
+
     <color name="button_pressed_color">#B3BFC0</color>
-    <!-- Cor do texto nas caixas de texto -->
+
     <color name="text_view_text_color">#000000</color>
-    <!-- Cor do botão pular -->
+
     <color name="skip_button">#000000</color>
-    <!-- Cor do text finalizar -->
+
     <color name="done_text">#000000</color>
-    <!-- Cor da seta -->
+
     <color name="next_arrow">#000000</color>
     <color name="selected_indicator">#000000</color>
     <color name="unselected_indicator">#B3BFC0</color>
+
+    <color name="title_intro_one_color">#000000</color>
+    <color name="description_intro_one_color">#000000</color>
+
+    <color name="title_intro_two_color">#000000</color>
+
+    <color name="title_intro_three_color">#000000</color>
 </resources>

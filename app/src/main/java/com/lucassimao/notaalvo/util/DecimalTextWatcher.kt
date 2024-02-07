@@ -4,7 +4,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import java.text.DecimalFormat
-import java.text.ParseException
 
 class DecimalTextWatcher(private val editText: EditText) : TextWatcher {
     private val decimalFormat = DecimalFormat("0.00")

@@ -1,5 +1,5 @@
 package com.lucassimao.notaalvo.util
 
-fun Double.formatDoubleWithComma(): String {
+fun Double.formatDoubleWithTwoDecimalPlaces(): String {
     return String.format("%.2f",this)
 }
