@@ -10,29 +10,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.05" />
 
     <TextView
         android:id="@+id/textView"
-        style="@style/TextAppearance.AppCompat.Large.Inverse"
+        style="@style/AppTitleIntroThree"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:gravity="center"
-        android:text="Ou, se preferir, faça o cálculo manual da sua média. Exemplo: Se você realizou 3 provas com notas 4,5; 6,1 e 8,4, basta somá-las e dividir pelo número de provas, resultando em (4,5 + 6,1 + 8,4)/3, que dá 6,33. Insira este valor no app, e ele calculará sua nota automaticamente"
-        android:textColor="@color/black"
+        android:text="@string/intro_three_text_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <ImageView
+        style="@style/AppImageIntroThree"
         android:layout_width="wrap_content"
-        android:layout_height="320dp"
-        android:layout_marginTop="16dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/img_intro_2"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.90" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
