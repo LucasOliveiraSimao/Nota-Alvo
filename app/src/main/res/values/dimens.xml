@@ -4,7 +4,7 @@
     <dimen name="number_button_text_size">30dp</dimen>
     <dimen name="text_view_result_height">180dp</dimen>
     <dimen name="text_view_result_padding_end">36dp</dimen>
-    <dimen name="text_view_text_size">24sp</dimen>
+    <dimen name="text_view_text_size">52sp</dimen>
     <dimen name="button_corner_radius">25dp</dimen>
 
     <dimen name="title_intro_one_margin">8dp</dimen>

@@ -32,7 +32,7 @@
     <string name="intro_two_text_1">Insira sua média (ME) disponível no eCampus para começar.</string>
     <string name="done">Finalizar</string>
     <string name="skip">Pular</string>
-    <string name="enter_your_average">Digite sua média (ME)</string>
+    <string name="enter_your_average">0</string>
     <string name="erase">Apagar</string>
     <string name="intro_three_text_1">Ou, se preferir, faça o cálculo manual da sua média. Exemplo: Se você realizou 3 provas com notas 4,5; 6,1 e 8,4, basta somá-las e dividir pelo número de provas, resultando em (4,5 + 6,1 + 8,4)/3, que dá 6,33. Insira este valor no app, e ele calculará sua nota automaticamente</string>
 
