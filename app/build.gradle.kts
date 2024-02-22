@@ -3,7 +3,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
-    id("com.github.triplet.play")
 }
 
 android {
@@ -41,11 +40,9 @@ android {
     }
 }
 
-play {
-    serviceAccountCredentials.set(file("service-account.json"))
-}
-
 dependencies {
+
+    implementation("com.google.android.gms:play-services-ads:22.6.0")
 
     implementation("com.github.AppIntro:AppIntro:6.3.1")
 

@@ -22,6 +22,7 @@ fun Activity.showMessage(@StringRes title: Int, code: Int, grade: Double?, close
     val textViewMessage = messageView.findViewById<TextView>(R.id.textViewMessage)
 
     val alert = AlertDialog.Builder(this)
+    alert.setCancelable(false)
     alert.setView(messageView)
     alert.setTitle(getString(title))
 
