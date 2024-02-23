@@ -131,6 +131,6 @@
         android:layout_height="0dp"
         android:layout_weight="0.7"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+        ads:adUnitId="ca-app-pub-4499697760377095/8788202226" />
 
 </LinearLayout>
