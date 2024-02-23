@@ -1,7 +1,9 @@
 package com.lucassimao.notaalvo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.lucassimao.notaalvo.Constants.APPROVED_STUDENT
 import com.lucassimao.notaalvo.Constants.FAILED_STUDENT
 import com.lucassimao.notaalvo.Constants.NEEDS_EXAM_FOR_APPROVAL
@@ -17,6 +19,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        MobileAds.initialize(this) {}
+
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
 
         binding.apply {
             val watcher = DecimalTextWatcher(txtResult)
