@@ -13,7 +13,7 @@ android {
         applicationId = "com.lucassimao.notaalvo"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
+        versionCode = 29
         versionName = "2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
