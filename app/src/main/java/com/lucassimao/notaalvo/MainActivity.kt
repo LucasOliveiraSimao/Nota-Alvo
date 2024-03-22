@@ -1,7 +1,9 @@
 package com.lucassimao.notaalvo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.lucassimao.notaalvo.Constants.APPROVED_STUDENT
 import com.lucassimao.notaalvo.Constants.FAILED_STUDENT
 import com.lucassimao.notaalvo.Constants.NEEDS_EXAM_FOR_APPROVAL
@@ -17,6 +19,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        MobileAds.initialize(this) {}
+
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
 
         binding.apply {
             val watcher = DecimalTextWatcher(txtResult)
@@ -59,44 +66,55 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkAndDisplayResult(value: Double) {
         return when (value) {
-            in 11.0..100.0 -> {
+            in 10.01..100.0 -> {
                 return
             }
 
-            in 8.0..10.0 -> showMessage(R.string.msg_parabens, APPROVED_STUDENT, null) {
-                clearUserScore()
-                updateTextView()
+            in 8.0..10.0 -> showMessage(
+                R.string.msg_parabens,
+                APPROVED_STUDENT,
+                null
+            ) {
+                clearUserScoreAndTextView()
             }
 
-            in 7.5..7.99 -> showMessage(R.string.msg_aviso, NEEDS_FINAL_EXAM, null) {
-                clearUserScore()
-                updateTextView()
+            in 7.5..7.99 -> showMessage(
+                R.string.msg_aviso,
+                NEEDS_FINAL_EXAM,
+                null
+            ) {
+                clearUserScoreAndTextView()
             }
 
             in 2.5..7.49 -> {
-                showMessage(R.string.msg_aviso, NEEDS_EXAM_FOR_APPROVAL, value) {
-                    clearUserScore()
-                    updateTextView()
-                }
+                showMessage(
+                    R.string.msg_aviso,
+                    NEEDS_EXAM_FOR_APPROVAL,
+                    value
+                ) { clearUserScoreAndTextView() }
             }
 
             else -> {
-                showMessage(R.string.msg_reprovado, FAILED_STUDENT, null) {
-                    clearUserScore()
-                    updateTextView()
+                showMessage(
+                    R.string.msg_reprovado,
+                    FAILED_STUDENT,
+                    null
+                ) {
+                    clearUserScoreAndTextView()
                 }
             }
         }
 
     }
 
-    private fun clearUserScore() {
+    private fun clearUserScoreAndTextView() {
         model.clearUserScore()
+        updateTextView()
     }
-
 
     private fun updateTextView() {
         val score = model.getUserScore()
         binding.txtResult.setText(score)
     }
+
 }

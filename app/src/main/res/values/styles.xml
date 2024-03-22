@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppNumbersButton" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/number_button_color</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">@dimen/button_margin</item>
+        <item name="android:layout_weight">0.25</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/number_button_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/button_number_background_selector</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="AppIcon" parent="AppNumbersButton">
+        <item name="android:scaleType">center</item>
+    </style>
+
+    <style name="AppNumberButtonEquals" parent="AppNumbersButton">
+        <item name="android:background">@drawable/button_equals_background_selector</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="AppNumberButtonEraseAll" parent="AppNumbersButton">
+        <item name="android:background">@drawable/button_erase_all_background_selector</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="AppTextViewResult">
+        <item name="android:gravity">end|center_vertical</item>
+        <item name="android:textColor">@color/text_view_text_color</item>
+        <item name="android:textColorHint">@color/text_view_text_color</item>
+        <item name="android:textSize">@dimen/text_view_text_size</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/text_view_result_height</item>
+        <item name="android:paddingEnd">@dimen/text_view_result_padding_end</item>
+    </style>
+
+    <style name="AppTitleIntroOne">
+        <item name="android:layout_margin">@dimen/title_intro_one_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/title_intro_one_text_size</item>
+        <item name="android:textColor">@color/title_intro_one_color</item>
+    </style>
+
+    <style name="AppDescriptionIntroOne">
+        <item name="android:layout_margin">@dimen/description_intro_one_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/description_intro_one_text_size</item>
+        <item name="android:textColor">@color/description_intro_one_color</item>
+    </style>
+
+    <style name="AppTitleIntroTwo">
+        <item name="android:layout_margin">@dimen/title_intro_two_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/title_intro_two_text_size</item>
+        <item name="android:textColor">@color/title_intro_two_color</item>
+    </style>
+
+    <style name="AppImageIntroTwo">
+        <item name="android:layout_marginTop">@dimen/image_intro_two_margin_top</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:src">@drawable/img_intro_1</item>
+    </style>
+
+    <style name="AppTitleIntroThree">
+        <item name="android:layout_margin">@dimen/title_intro_three_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/title_intro_three_text_size</item>
+        <item name="android:textColor">@color/title_intro_three_color</item>
+    </style>
+
+    <style name="AppImageIntroThree">
+        <item name="android:layout_marginTop">@dimen/image_intro_three_margin_top</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:src">@drawable/img_intro_2</item>
+    </style>
+</resources>
