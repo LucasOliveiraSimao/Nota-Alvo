@@ -146,12 +146,10 @@
 
     </LinearLayout>
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
+    <FrameLayout
+        android:id="@+id/adViewContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.7"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-4499697760377095/8788202226" />
+        android:layout_weight="0.7" />
 
 </LinearLayout>

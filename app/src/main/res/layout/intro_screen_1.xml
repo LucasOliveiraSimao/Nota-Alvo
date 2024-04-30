@@ -17,7 +17,7 @@
         style="@style/AppTitleIntroOne"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/intro_one_text_1"
+        android:text="@string/intro_welcome_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
@@ -27,7 +27,7 @@
         style="@style/AppDescriptionIntroOne"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/intro_one_text_2"
+        android:text="@string/intro_welcome_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

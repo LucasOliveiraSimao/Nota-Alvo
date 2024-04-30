@@ -1,8 +1,12 @@
 package com.lucassimao.notaalvo
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.lucassimao.notaalvo.Constants.APPROVED_STUDENT
 import com.lucassimao.notaalvo.Constants.FAILED_STUDENT
@@ -10,20 +14,21 @@ import com.lucassimao.notaalvo.Constants.NEEDS_EXAM_FOR_APPROVAL
 import com.lucassimao.notaalvo.Constants.NEEDS_FINAL_EXAM
 import com.lucassimao.notaalvo.databinding.ActivityMainBinding
 import com.lucassimao.notaalvo.util.DecimalTextWatcher
+import com.lucassimao.notaalvo.util.inflateMenu
+import com.lucassimao.notaalvo.util.shareApp
 import com.lucassimao.notaalvo.util.showMessage
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val model = CalculatorModel()
+    private lateinit var adView: AdView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        MobileAds.initialize(this) {}
-
-        val adRequest = AdRequest.Builder().build()
-        binding.adView.loadAd(adRequest)
+        initializeAds()
 
         binding.apply {
             val watcher = DecimalTextWatcher(txtResult)
@@ -37,6 +42,26 @@ class MainActivity : AppCompatActivity() {
             checkAndDisplayResult(score)
         }
 
+    }
+
+    private fun loadBannerAd() {
+        if (BuildConfig.DEBUG) {
+            adView.adUnitId = BuildConfig.ADMOB_APP_ID_TEST
+        } else {
+            adView.adUnitId = BuildConfig.ADMOB_APP_ID_PROD
+        }
+
+        adView.setAdSize(AdSize.BANNER)
+
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
+    }
+
+    private fun initializeAds() {
+        adView = AdView(this)
+        binding.adViewContainer.addView(adView)
+        MobileAds.initialize(this) {}
+        loadBannerAd()
     }
 
     private fun setupButtonListeners() {
@@ -71,7 +96,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             in 8.0..10.0 -> showMessage(
-                R.string.msg_parabens,
+                R.string.congratulation_message,
                 APPROVED_STUDENT,
                 null
             ) {
@@ -79,7 +104,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             in 7.5..7.99 -> showMessage(
-                R.string.msg_aviso,
+                R.string.warning_message,
                 NEEDS_FINAL_EXAM,
                 null
             ) {
@@ -88,7 +113,7 @@ class MainActivity : AppCompatActivity() {
 
             in 2.5..7.49 -> {
                 showMessage(
-                    R.string.msg_aviso,
+                    R.string.warning_message,
                     NEEDS_EXAM_FOR_APPROVAL,
                     value
                 ) { clearUserScoreAndTextView() }
@@ -115,6 +140,21 @@ class MainActivity : AppCompatActivity() {
     private fun updateTextView() {
         val score = model.getUserScore()
         binding.txtResult.setText(score)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        inflateMenu(R.menu.menu, menu, menuInflater)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_share -> shareApp(
+                getString(R.string.share_app),
+                getString(R.string.share_app_via)
+            )
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

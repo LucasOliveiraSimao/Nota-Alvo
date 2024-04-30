@@ -48,6 +48,7 @@ captures/
 *.ipr
 *~
 *.swp
+local.properties
 
 # Keystore files
 *.jks
