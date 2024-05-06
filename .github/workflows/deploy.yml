@@ -22,7 +22,11 @@ jobs:
         run: chmod +x gradlew
 
       - name: Create local.properties
-        run: echo "sdk.dir=${{ secrets.SDK_LOCATION }}" > local.properties && echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
+        run: |
+          echo "sdk.dir=${{ secrets.SDK_LOCATION }}" > local.properties
+          echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
+          echo "ADMOB_APP_ID_TEST=${{ secrets.ADMOB_APP_ID_TEST }}" >> local.properties
+          echo "ADMOB_APP_ID_PROD=${{ secrets.ADMOB_APP_ID_PROD }}" >> local.properties
 
 
       - name: Run lint
