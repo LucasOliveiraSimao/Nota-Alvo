@@ -9,8 +9,11 @@ jobs:
     name: Static Code Analysis
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.1.1
+
       - name: Include Common Setup
-        uses: /.github/workflows/common-setup.yml
+        uses: ./.github/workflows/common-setup.yml
 
       - name: Run lint
         run: ./gradlew lintDebug
