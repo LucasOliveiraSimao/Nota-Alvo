@@ -67,6 +67,12 @@ android {
     viewBinding {
         enable = true
     }
+
+    tasks.withType<JavaCompile> {
+        options.isFork = true
+        options.forkOptions.jvmArgs?.add("-XX:MaxHeapSize=4096m")
+        options.encoding = "UTF-8"
+    }
 }
 
 dependencies {
