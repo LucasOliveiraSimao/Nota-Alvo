@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Include Common Setup
-        uses: ./.github/workflows/common-setup.yml
+        uses: /.github/workflows/common-setup.yml
 
       - name: Run lint
         run: ./gradlew lintDebug
