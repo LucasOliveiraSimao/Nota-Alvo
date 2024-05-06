@@ -101,6 +101,7 @@ obj/
 .idea/deploymentTargetSelector.xml
 .idea/migrations.xml
 .idea/appInsightsSettings.xml
+.idea/deploymentTargetSelector.xml
 
 # Legacy Eclipse project files
 .classpath
