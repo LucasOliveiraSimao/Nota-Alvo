@@ -1,3 +1,10 @@
+name: Common Setup
+on:
+  workflow_run:
+    workflows: ["build.yml"]
+    types:
+      - completed
+
 jobs:
   common-setup:
     name: Common Setup
