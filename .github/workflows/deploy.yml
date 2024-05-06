@@ -17,9 +17,30 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: 'gradle'
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+        env:
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
+          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
+          ANDROID_HOME: /usr/local/lib/android/sdk
+          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+
+      - name: Create local.properties
+        run: |
+          echo "sdk.dir=${{ secrets.SDK_LOCATION }}" > local.properties
+          echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
+          echo "ADMOB_APP_ID_TEST=${{ secrets.ADMOB_APP_ID_TEST }}" >> local.properties
+          echo "ADMOB_APP_ID_PROD=${{ secrets.ADMOB_APP_ID_PROD }}" >> local.properties
 
       - name: Run lint
         run: ./gradlew lintDebug
@@ -42,7 +63,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: gradle
+          cache: 'gradle'
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
@@ -62,6 +83,13 @@ jobs:
           JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
           ANDROID_HOME: /usr/local/lib/android/sdk
           ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+
+      - name: Create local.properties
+        run: |
+          echo "sdk.dir=${{ secrets.SDK_LOCATION }}" > local.properties
+          echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
+          echo "ADMOB_APP_ID_TEST=${{ secrets.ADMOB_APP_ID_TEST }}" >> local.properties
+          echo "ADMOB_APP_ID_PROD=${{ secrets.ADMOB_APP_ID_PROD }}" >> local.properties
 
       - name: Run unit tests
         run: ./gradlew test
@@ -85,9 +113,30 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: 'gradle'
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+        env:
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
+          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
+          ANDROID_HOME: /usr/local/lib/android/sdk
+          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+
+      - name: Create local.properties
+        run: |
+          echo "sdk.dir=${{ secrets.SDK_LOCATION }}" > local.properties
+          echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
+          echo "ADMOB_APP_ID_TEST=${{ secrets.ADMOB_APP_ID_TEST }}" >> local.properties
+          echo "ADMOB_APP_ID_PROD=${{ secrets.ADMOB_APP_ID_PROD }}" >> local.properties
 
       - name: Build Android App Bundle
         run: ./gradlew bundle
@@ -121,6 +170,26 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+        env:
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
+          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
+          ANDROID_HOME: /usr/local/lib/android/sdk
+          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+
+      - name: Create local.properties
+        run: |
+          echo "sdk.dir=${{ secrets.SDK_LOCATION }}" > local.properties
+          echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
+          echo "ADMOB_APP_ID_TEST=${{ secrets.ADMOB_APP_ID_TEST }}" >> local.properties
+          echo "ADMOB_APP_ID_PROD=${{ secrets.ADMOB_APP_ID_PROD }}" >> local.properties
 
       - name: Assemble Release Bundle
         run: ./gradlew bundleRelease
