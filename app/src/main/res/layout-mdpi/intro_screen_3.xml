@@ -14,16 +14,16 @@
 
     <TextView
         android:id="@+id/textView"
-        style="@style/AppTitleIntroTwo"
+        style="@style/AppTitleIntroThree"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/intro_enter_grade_instruction"
+        android:text="@string/intro_manual_grade_calculation_instruction"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <ImageView
-        style="@style/AppImageIntroTwo"
+        style="@style/AppImageIntroThree"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"

@@ -13,7 +13,6 @@ import com.lucassimao.notaalvo.Constants.FAILED_STUDENT
 import com.lucassimao.notaalvo.Constants.NEEDS_EXAM_FOR_APPROVAL
 import com.lucassimao.notaalvo.Constants.NEEDS_FINAL_EXAM
 import com.lucassimao.notaalvo.databinding.ActivityMainBinding
-import com.lucassimao.notaalvo.util.DecimalTextWatcher
 import com.lucassimao.notaalvo.util.inflateMenu
 import com.lucassimao.notaalvo.util.shareApp
 import com.lucassimao.notaalvo.util.showMessage
@@ -29,11 +28,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initializeAds()
-
-        binding.apply {
-            val watcher = DecimalTextWatcher(txtResult)
-            txtResult.addTextChangedListener(watcher)
-        }
 
         setupButtonListeners()
 
@@ -67,8 +61,8 @@ class MainActivity : AppCompatActivity() {
     private fun setupButtonListeners() {
         val numberButtons = listOf(
             binding.btnOne, binding.btnTwo, binding.btnThree, binding.btnFour,
-            binding.btnFive, binding.btnSix, binding.btnSeven, binding.btnEigth,
-            binding.btnNine, binding.btnZero
+            binding.btnFive, binding.btnSix, binding.btnSeven, binding.btnEight,
+            binding.btnNine, binding.btnZero, binding.btnDot
         )
 
         numberButtons.forEach { button ->

@@ -2,7 +2,7 @@
 <resources>
     <dimen name="button_margin">2dp</dimen>
     <dimen name="number_button_text_size">30dp</dimen>
-    <dimen name="text_view_result_height">180dp</dimen>
+    <dimen name="text_view_result_height">160dp</dimen>
     <dimen name="text_view_result_padding_end">36dp</dimen>
     <dimen name="text_view_text_size">52sp</dimen>
     <dimen name="button_corner_radius">25dp</dimen>
