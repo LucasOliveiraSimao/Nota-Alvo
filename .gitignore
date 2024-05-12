@@ -48,7 +48,6 @@ captures/
 *.ipr
 *~
 *.swp
-local.properties
 
 # Keystore files
 *.jks
@@ -100,8 +99,6 @@ obj/
 .idea/deploymentTargetDropDown.xml
 .idea/deploymentTargetSelector.xml
 .idea/migrations.xml
-.idea/appInsightsSettings.xml
-.idea/deploymentTargetSelector.xml
 
 # Legacy Eclipse project files
 .classpath
