@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTitleIntroThree">
+        <item name="android:layout_margin">@dimen/title_intro_three_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/title_intro_three_text_size</item>
+        <item name="android:textColor">@color/title_intro_three_color</item>
+    </style>
+
+    <style name="AppImageIntroThree">
+        <item name="android:layout_marginTop">@dimen/image_intro_three_margin_top</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:padding">@dimen/image_intro_three_padding</item>
+        <item name="android:src">@drawable/img_intro_2</item>
+    </style>
+</resources>

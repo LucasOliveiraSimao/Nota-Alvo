@@ -3,13 +3,11 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 
-    <color name="number_button_color">#786C6C</color>
+    <color name="number_button_color">#000000</color>
 
     <color name="number_button_background">#FEFEFE</color>
 
     <color name="equals_button_background">#469536</color>
-
-    <color name="erase_all_button_background">#ffa500</color>
 
     <color name="button_pressed_color">#B3BFC0</color>
 
