@@ -10,7 +10,8 @@
     <string name="close">Fechar</string>
     <string name="equals">=</string>
     <string name="zero">0</string>
-    <string name="erase_all">C</string>
+    <string name="erase_all">CE</string>
+    <string name="erase">←</string>
 
     <!-- Números -->
     <string name="number_1">1</string>
@@ -31,7 +32,7 @@
     <string name="rejection_message">Lamentavelmente, as chances de você ser aprovado são inexistentes.</string>
 
     <!-- Mensagem com a nota necessária para a Prova Final -->
-    <string name="final_exam_requirement_note">A nota necessária para a aprovação na Prova Final é: %1$s.</string>
+    <string name="final_exam_requirement_note">A nota necessária para a aprovação na Prova Final é: %1$s</string>
 
     <!-- Mensagem de boas-vindas -->
     <string name="intro_welcome_title">Bem-vindo ao Nota Alvo!</string>
@@ -47,12 +48,11 @@
     <string name="done">Finalizar</string>
     <string name="skip">Pular</string>
     <string name="enter_your_average">0</string>
-    <string name="erase">Apagar</string>
-
 
     <!-- Compartilhamento -->
     <string name="share_content">Compartilhar</string>
     <string name="share_app">Compartilhar</string>
     <string name="share_app_via">Compartilhar App via…</string>
+    <string name="point">.</string>
 
 </resources>
