@@ -27,7 +27,10 @@ class CalculatorModel {
     }
 
     fun convertUserScoreToDouble(): Double {
-        return userScore.toDouble()
+        if (userScore.isNotEmpty()) {
+            return userScore.toDouble()
+        }
+        return 0.0
     }
 
     fun calculateScoreDifference(score: Double): String {

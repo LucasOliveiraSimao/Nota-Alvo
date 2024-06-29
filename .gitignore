@@ -48,7 +48,6 @@ captures/
 *.ipr
 *~
 *.swp
-local.properties
 
 # Keystore files
 *.jks
@@ -96,10 +95,11 @@ obj/
 .idea/gradle.xml
 .idea/jarRepositories.xml
 .idea/navEditor.xml
-.idea/deploymentTargetDropDown.xml
-.idea/migrations.xml
 .idea/appInsightsSettings.xml
+.idea/deploymentTargetDropDown.xml
 .idea/deploymentTargetSelector.xml
+.idea/migrations.xml
+.idea/other.xml
 
 # Legacy Eclipse project files
 .classpath
