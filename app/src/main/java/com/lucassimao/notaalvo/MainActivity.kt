@@ -37,7 +37,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnEquals.setOnClickListener {
             val score = model.convertUserScoreToDouble()
-            checkAndDisplayResult(score)
+            if (score != 0.0) {
+                checkAndDisplayResult(score)
+            }
         }
 
         incrementAppUseCount(this)
