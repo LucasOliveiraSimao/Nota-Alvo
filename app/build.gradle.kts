@@ -21,8 +21,8 @@ android {
         applicationId = "com.lucassimao.notaalvo"
         minSdk = 24
         targetSdk = 34
-        versionCode = 35
-        versionName = "2.0.1"
+        versionCode = 36
+        versionName = "2.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -86,6 +86,9 @@ dependencies {
 
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
+
+    implementation("com.google.android.play:review-ktx:2.0.1")
+    implementation("com.google.android.play:review:2.0.1")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

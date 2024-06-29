@@ -13,9 +13,13 @@ import com.lucassimao.notaalvo.Constants.FAILED_STUDENT
 import com.lucassimao.notaalvo.Constants.NEEDS_EXAM_FOR_APPROVAL
 import com.lucassimao.notaalvo.Constants.NEEDS_FINAL_EXAM
 import com.lucassimao.notaalvo.databinding.ActivityMainBinding
+import com.lucassimao.notaalvo.util.incrementAppUseCount
 import com.lucassimao.notaalvo.util.inflateMenu
 import com.lucassimao.notaalvo.util.shareApp
+import com.lucassimao.notaalvo.util.shouldShowFeedbackDialog
+import com.lucassimao.notaalvo.util.showFeedbackDialog
 import com.lucassimao.notaalvo.util.showMessage
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -34,6 +38,11 @@ class MainActivity : AppCompatActivity() {
         binding.btnEquals.setOnClickListener {
             val score = model.convertUserScoreToDouble()
             checkAndDisplayResult(score)
+        }
+
+        incrementAppUseCount(this)
+        if (shouldShowFeedbackDialog(this)) {
+            showFeedbackDialog(this)
         }
 
     }
