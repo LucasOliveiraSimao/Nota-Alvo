@@ -25,9 +25,6 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v4.1.1
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
       - name: Cache prepared Gradlew
         uses: actions/cache@v4
         with:
@@ -77,6 +74,9 @@ jobs:
           name: local-properties
           path: .
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+        
       - name: Run lint
         run: ./gradlew lintRelease
 
@@ -117,6 +117,9 @@ jobs:
           name: local-properties
           path: .
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+        
       - name: Run unit tests
         run: ./gradlew test
 
@@ -126,47 +129,9 @@ jobs:
           name: unit_test_report
           path: app/build/reports/tests/testDebugUnitTest/
 
-  package:
-    needs: [ unit-test ]
-    name: Generate Android App Bundle
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the code
-        uses: actions/checkout@v4.1.1
-
-      - name: Set up JDK ${{ env.JAVA_VERSION }}
-        uses: actions/setup-java@v4.0.0
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: ${{ env.DISTRIBUTION }}
-          cache: 'gradle'
-
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.GRADLE_CACHE }}
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Download local.properties
-        uses: actions/download-artifact@v4
-        with:
-          name: local-properties
-          path: .
-
-      - name: Build Android App Bundle
-        run: ./gradlew bundle
-
-      - name: Upload Android App Bundle
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-release.aab
-          path: app/build/outputs/bundle/release/app-release.aab
-
   distribute:
     name: Distribute on Google Play Store
-    needs: [ package ]
+    needs: [ unit-test ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1
@@ -198,6 +163,9 @@ jobs:
           name: local-properties
           path: .
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+        
       - name: Assemble Release Bundle
         run: ./gradlew bundleRelease
 
