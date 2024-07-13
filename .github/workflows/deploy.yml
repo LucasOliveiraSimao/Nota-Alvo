@@ -78,7 +78,7 @@ jobs:
           path: .
 
       - name: Run lint
-        run: ./gradlew lintDebug
+        run: ./gradlew lintRelease
 
       - name: Upload lint report
         uses: actions/upload-artifact@v4
