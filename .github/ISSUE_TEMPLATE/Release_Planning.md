@@ -1,12 +1,11 @@
 ---
-name: "# Planejamento da Versão [Número da Versão]"
-about: "## Descrição Detalhe a versão planejada, incluindo novas funcionalidades,
-  melhorias e correções de bugs."
-title: ''
-labels: ''
-assignees: ''
+name: "Release Planning"
+about: "Detalhe a versão planejada"
 
 ---
+
+## Descrição
+Detalhe a versão planejada, incluindo novas funcionalidades, melhorias e correções de bugs.
 
 ## Objetivos
 - [ ] Defina os objetivos principais desta versão.
