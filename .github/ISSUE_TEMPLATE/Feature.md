@@ -1,12 +1,12 @@
 ---
-name: "# Nova Feature: [Título da Feature]"
-about: "## Descrição Descreva de forma clara e concisa a nova feature que será adicionada.
-  Explique o problema que está sendo resolvido ou a necessidade que está sendo atendida."
-title: ''
+name: "Feature"
+about: "Descreva de forma clara e concisa a nova feature que será adicionada."
 labels: feature
-assignees: ''
 
 ---
+
+## Descrição 
+Descreva de forma clara e concisa a nova feature que será adicionada. Explique o problema que está sendo resolvido ou a necessidade que está sendo atendida.
 
 ## Requisitos
 1. **Funcionalidade Principal:**
