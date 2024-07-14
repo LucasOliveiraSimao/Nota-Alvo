@@ -28,23 +28,22 @@ fun Activity.showMessage(@StringRes title: Int, code: Int, grade: Double?, close
 
     when (code) {
         APPROVED_STUDENT -> {
-            textViewMessage.text = getString(R.string.msg_1)
+            textViewMessage.text = getString(R.string.approval_message)
         }
 
         NEEDS_FINAL_EXAM -> {
-            textViewMessage.text = getString(R.string.msg_2)
+            textViewMessage.text = getString(R.string.final_exam_requirement_message)
         }
 
         NEEDS_EXAM_FOR_APPROVAL -> {
             textViewMessage.text = getString(
-                R.string.msg_4, CalculatorModel().calculateScoreDifference(
-                    grade!!
-                )
+                R.string.final_exam_requirement_note,
+                CalculatorModel().calculateScoreDifference(grade!!)
             )
         }
 
         FAILED_STUDENT -> {
-            textViewMessage.text = getString(R.string.msg_3)
+            textViewMessage.text = getString(R.string.rejection_message)
         }
     }
 

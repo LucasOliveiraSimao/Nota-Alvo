@@ -2,7 +2,6 @@ package com.lucassimao.notaalvo
 
 import com.lucassimao.notaalvo.Constants.IDEAL_SCORE
 import com.lucassimao.notaalvo.Constants.MULTIPLIER_VALUE
-import com.lucassimao.notaalvo.util.addTwoDecimalPlaces
 import com.lucassimao.notaalvo.util.formatDoubleWithTwoDecimalPlaces
 import kotlin.math.abs
 
@@ -28,7 +27,10 @@ class CalculatorModel {
     }
 
     fun convertUserScoreToDouble(): Double {
-        return userScore.toDoubleOrNull()?.addTwoDecimalPlaces() ?: 0.0
+        if (userScore.isNotEmpty()) {
+            return userScore.toDouble()
+        }
+        return 0.0
     }
 
     fun calculateScoreDifference(score: Double): String {

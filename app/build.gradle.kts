@@ -1,9 +1,17 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
+
+val localPropertiesFile = rootProject.file("local.properties")
+val localProperties = Properties()
+localProperties.load(FileInputStream(localPropertiesFile))
 
 android {
     namespace = "com.lucassimao.notaalvo"
@@ -13,14 +21,35 @@ android {
         applicationId = "com.lucassimao.notaalvo"
         minSdk = 24
         targetSdk = 34
-        versionCode = 35
-        versionName = "2.0.1"
+        versionCode = 36
+        versionName = "2.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(
+            "String",
+            "ADMOB_APP_ID_TEST",
+            localProperties.getProperty("ADMOB_APP_ID_TEST")
+        )
+
+        buildConfigField(
+            "String",
+            "ADMOB_APP_ID_PROD",
+            localProperties.getProperty("ADMOB_APP_ID_PROD")
+        )
+
     }
 
     buildTypes {
         release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            signingConfig = signingConfigs.getByName("debug")
+        }
+        debug {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -38,6 +67,12 @@ android {
     viewBinding {
         enable = true
     }
+
+    tasks.withType<JavaCompile> {
+        options.isFork = true
+        options.forkOptions.jvmArgs?.add("-XX:MaxHeapSize=4096m")
+        options.encoding = "UTF-8"
+    }
 }
 
 dependencies {
@@ -51,6 +86,9 @@ dependencies {
 
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
+
+    implementation("com.google.android.play:review-ktx:2.0.1")
+    implementation("com.google.android.play:review:2.0.1")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
