@@ -1,12 +1,12 @@
 ---
-name: "# Melhoria: [Título da Melhoria]"
-about: "## Descrição Descreva de forma clara e concisa a melhoria sugerida. Explique
-  por que essa melhoria é necessária e quais benefícios ela trará."
-title: ''
+name: "Improvement"
+about: "Descreva de forma clara e concisa a melhoria sugerida."
 labels: improvements
-assignees: ''
 
 ---
+
+## Descrição
+Descreva de forma clara e concisa a melhoria sugerida. Explique por que essa melhoria é necessária e quais benefícios ela trará.
 
 ## Objetivo
 - [ ] Descreva o objetivo principal da melhoria.
