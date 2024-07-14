@@ -1,12 +1,10 @@
 ---
-name: "# Bug Report: [Título do Bug]"
-about: "## Descrição Descreva de forma clara e concisa o bug encontrado. Explique
-  o comportamento atual e o comportamento esperado."
-title: ''
+name: "Bug Report"
+about: "Descreva de forma clara e concisa o bug encontrado."
 labels: bug
-assignees: ''
-
 ---
+## Descrição
+Descreva de forma clara e concisa o bug encontrado. Explique o comportamento atual e o comportamento esperado.
 
 ## Passos para Reproduzir
 Liste os passos exatos para reproduzir o bug:
