@@ -33,6 +33,11 @@ jobs:
       - name: Grant Execute Permission for Gradlew
         run: chmod +x gradlew
 
+      - name: Load Google Service File
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: echo $DATA | base64 -di > app/google-services.json
+
       - name: Decode and Save Keystore File
         env:
           KEYSTORE_FILE_BASE64: ${{ secrets.KEYSTORE }}
