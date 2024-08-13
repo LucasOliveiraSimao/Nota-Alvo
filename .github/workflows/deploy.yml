@@ -27,12 +27,28 @@ jobs:
       - name: Grant Execute Permission for Gradlew
         run: chmod +x gradlew
 
-      - name: Generate local.properties
+      - name: Load Google Service File
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: echo $DATA | base64 -di > app/google-services.json
+
+      - name: Decode and Save Keystore File
+        env:
+          KEYSTORE_FILE_BASE64: ${{ secrets.KEYSTORE }}
+        run: |
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/key_app_nota_alvo.jks
+
+      - name: Create local.properties
         run: |
           echo "sdk.dir=${{ secrets.SDK_LOCATION }}" > local.properties
           echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
           echo "ADMOB_APP_ID_TEST=${{ secrets.ADMOB_APP_ID_TEST }}" >> local.properties
           echo "ADMOB_APP_ID_PROD=${{ secrets.ADMOB_APP_ID_PROD }}" >> local.properties
+          echo "storeFile=key_app_nota_alvo.jks" >> app/keystore.properties
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/keystore.jks
+          echo "storePassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> app/keystore.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
 
       - name: Increment App Version Code
         uses: chkfung/android-version-actions@v1.2.1
@@ -48,9 +64,9 @@ jobs:
         with:
           releaseDirectory: app/build/outputs/bundle/release
           signingKeyBase64: ${{ secrets.KEYSTORE }}
-          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
-          alias: ${{ secrets.APP_NAME_KEY }}
-          keyPassword: ${{ secrets.APP_NAME_KEY_PASSWORD }}
+          keyStorePassword: ${{ secrets.KEY_PASSWORD }}
+          alias: ${{ secrets.KEY_ALIAS }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
 
       - name: Set Up Google Play Store Authorization
         run: echo '${{ secrets.GOOGLE_PLAY_API_AUTH }}' > service_account.json
@@ -61,5 +77,5 @@ jobs:
           serviceAccountJson: service_account.json
           packageName: com.lucassimao.notaalvo
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
-          track: production
+          track: alpha
           status: 'completed'

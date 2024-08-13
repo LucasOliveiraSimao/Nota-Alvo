@@ -13,6 +13,10 @@ val localPropertiesFile = rootProject.file("local.properties")
 val localProperties = Properties()
 localProperties.load(FileInputStream(localPropertiesFile))
 
+val keystorePropertiesFile = rootProject.file("app/keystore.properties")
+val keystoreProperties = Properties()
+keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+
 android {
     namespace = "com.lucassimao.notaalvo"
     compileSdk = 34
@@ -40,14 +44,23 @@ android {
 
     }
 
+    signingConfigs {
+        create("release") {
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
+        }
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
         }
         debug {
             isMinifyEnabled = false
@@ -64,14 +77,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    viewBinding {
-        enable = true
-    }
-
-    tasks.withType<JavaCompile> {
-        options.isFork = true
-        options.forkOptions.jvmArgs?.add("-XX:MaxHeapSize=4096m")
-        options.encoding = "UTF-8"
+    buildFeatures {
+        viewBinding = true
     }
 }
 
