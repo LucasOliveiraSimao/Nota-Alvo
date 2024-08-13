@@ -91,18 +91,31 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Grant Execute Permission for Gradlew
         run: chmod +x gradlew
+ 
+      - name: Load Google Service File
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: echo $DATA | base64 -di > app/google-services.json
 
+      - name: Decode and Save Keystore File
+        env:
+          KEYSTORE_FILE_BASE64: ${{ secrets.KEYSTORE }}
+        run: |
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/key_app_nota_alvo.jks
+      
       - name: Create local.properties
         run: |
           echo "sdk.dir=${{ secrets.SDK_LOCATION }}" > local.properties
           echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
           echo "ADMOB_APP_ID_TEST=${{ secrets.ADMOB_APP_ID_TEST }}" >> local.properties
           echo "ADMOB_APP_ID_PROD=${{ secrets.ADMOB_APP_ID_PROD }}" >> local.properties
+          echo "storeFile=key_app_nota_alvo.jks" >> app/keystore.properties
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/keystore.jks
+          echo "storePassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> app/keystore.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
 
       - name: Execute Unit Tests
         run: ./gradlew test
@@ -142,18 +155,41 @@ jobs:
       - name: Grant Execute Permission for Gradlew
         run: chmod +x gradlew
 
+      - name: Load Google Service File
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: echo $DATA | base64 -di > app/google-services.json
+
+      - name: Decode and Save Keystore File
+        env:
+          KEYSTORE_FILE_BASE64: ${{ secrets.KEYSTORE }}
+        run: |
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/key_app_nota_alvo.jks
+      
       - name: Create local.properties
         run: |
           echo "sdk.dir=${{ secrets.SDK_LOCATION }}" > local.properties
           echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
           echo "ADMOB_APP_ID_TEST=${{ secrets.ADMOB_APP_ID_TEST }}" >> local.properties
           echo "ADMOB_APP_ID_PROD=${{ secrets.ADMOB_APP_ID_PROD }}" >> local.properties
+          echo "storeFile=key_app_nota_alvo.jks" >> app/keystore.properties
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/keystore.jks
+          echo "storePassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> app/keystore.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
 
       - name: Generate Android App Bundle
-        run: ./gradlew bundle
+        run: ./gradlew bundleRelease
+        env:
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          STORE_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
-      - name: Upload Android App Bundle
+      - name: Upload Android Bundle
         uses: actions/upload-artifact@v4
         with:
-          name: Android App Bundle
+          name: Artifact Version
           path: app/build/outputs/bundle/release/app-release.aab
+
+      - name: Clean up
+        run: rm app/keystore.jks
