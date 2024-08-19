@@ -170,8 +170,8 @@ jobs:
         run: |
           echo "sdk.dir=${{ secrets.SDK_LOCATION }}" > local.properties
           echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
-          echo "ADMOB_APP_ID_TEST=${{ secrets.ADMOB_APP_ID_TEST }}" >> local.properties
-          echo "ADMOB_APP_ID_PROD=${{ secrets.ADMOB_APP_ID_PROD }}" >> local.properties
+          echo "ADMOB_APP_ID_TEST=\"${{ secrets.ADMOB_APP_ID_TEST }}\"" >> local.properties
+          echo "ADMOB_APP_ID_PROD=\"${{ secrets.ADMOB_APP_ID_PROD }}\"" >> local.properties
           echo "storeFile=key_app_nota_alvo.jks" >> app/keystore.properties
           echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/keystore.jks
           echo "storePassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
