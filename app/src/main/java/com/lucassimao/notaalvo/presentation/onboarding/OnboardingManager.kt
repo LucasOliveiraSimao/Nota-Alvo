@@ -1,4 +1,4 @@
-package com.lucassimao.notaalvo
+package com.lucassimao.notaalvo.presentation.onboarding
 
 import android.content.Context
 import android.content.SharedPreferences

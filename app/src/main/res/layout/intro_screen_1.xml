@@ -23,7 +23,6 @@
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
-        android:id="@+id/textView2"
         style="@style/AppDescriptionIntroOne"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
