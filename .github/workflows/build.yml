@@ -126,6 +126,67 @@ jobs:
           name: Unit Test Report
           path: app/build/reports/tests/testDebugUnitTest/
 
+  instrumented-tests:
+    needs: [ unit-tests ]
+    name: Run Instrumented Tests
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4.1.1
+
+      - name: Cache Gradle and Java
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle
+            ~/.m2/repository
+            ~/.java
+          key: ${{ runner.os }}-gradle-java-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}-${{ hashFiles('build.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-java-
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4.0.0
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Grant Execute Permission for Gradlew
+        run: chmod +x gradlew
+
+      - name: Load Google Service File
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: echo $DATA | base64 -di > app/google-services.json
+
+      - name: Decode and Save Keystore File
+        env:
+          KEYSTORE_FILE_BASE64: ${{ secrets.KEYSTORE }}
+        run: |
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/key_app_nota_alvo.jks
+
+      - name: Create local.properties
+        run: |
+          echo "sdk.dir=${{ secrets.SDK_LOCATION }}" > local.properties
+          echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
+          echo "ADMOB_APP_ID_TEST=${{ secrets.ADMOB_APP_ID_TEST }}" >> local.properties
+          echo "ADMOB_APP_ID_PROD=${{ secrets.ADMOB_APP_ID_PROD }}" >> local.properties
+          echo "storeFile=key_app_nota_alvo.jks" >> app/keystore.properties
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/keystore.jks
+          echo "storePassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> app/keystore.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
+
+      - name: Run Instrumented Tests
+        run: ./gradlew connectedAndroidTest
+
+      - name: Upload Instrumented Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: Instrumented Test Report
+          path: app/build/reports/androidTests/connected/
+
   build:
     needs: [ unit-tests ]
     name: Build Android App Bundle

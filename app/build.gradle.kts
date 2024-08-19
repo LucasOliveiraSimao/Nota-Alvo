@@ -26,7 +26,7 @@ android {
         minSdk = 24
         targetSdk = 34
         versionCode = 37
-        versionName = "2.1.0"
+        versionName = "3.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -84,6 +84,8 @@ android {
 
 dependencies {
 
+    implementation("io.insert-koin:koin-android:3.3.0")
+
     implementation("com.google.android.gms:play-services-ads:22.6.0")
     implementation("com.google.android.gms:play-services-ads-lite:22.6.0")
 
@@ -105,6 +107,13 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    androidTestImplementation("com.adevinta.android:barista:4.2.0") {
+        exclude(group = "org.jetbrains.kotlin")
+    }
+
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+
 
     testImplementation("io.mockk:mockk:1.13.5")
     testImplementation("io.mockk:mockk-android:1.13.5")
