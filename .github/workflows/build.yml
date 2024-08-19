@@ -179,7 +179,12 @@ jobs:
           echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
 
       - name: Run Instrumented Tests
-        run: ./gradlew connectedAndroidTest
+        uses: ReactiveCircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          script: ./gradlew connectedAndroidTest
 
       - name: Upload Instrumented Test Report
         uses: actions/upload-artifact@v4
