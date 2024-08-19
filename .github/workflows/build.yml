@@ -130,6 +130,9 @@ jobs:
     needs: [ unit-tests ]
     name: Run Instrumented Tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        api-level: [34]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4.1.1
