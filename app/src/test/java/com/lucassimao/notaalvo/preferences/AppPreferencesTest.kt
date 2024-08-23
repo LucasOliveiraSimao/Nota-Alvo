@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.lucassimao.notaalvo.util.Constants.KEY_APP_USE_COUNT
 import com.lucassimao.notaalvo.util.Constants.KEY_HAS_RATED
+import com.lucassimao.notaalvo.util.Constants.KEY_NOT_TO_SHOW
 import com.lucassimao.notaalvo.util.Constants.PREFS_NAME
 import io.mockk.Runs
 import io.mockk.every
@@ -73,8 +74,8 @@ class AppPreferencesTest{
     fun `test shouldShowFeedbackDialog returns true when use count is 5 or more and has not rated`() {
 
         every { context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE) } returns sharedPref
-        every { sharedPref.getInt(KEY_APP_USE_COUNT, 0) } returns 5  // Mock use count as 5
-        every { sharedPref.getBoolean(KEY_HAS_RATED, false) } returns false  // Mock has not rated
+        every { sharedPref.getInt(KEY_APP_USE_COUNT, 0) } returns 5
+        every { sharedPref.getBoolean(KEY_HAS_RATED, false) } returns false
 
         val result = appPreferences.shouldShowFeedbackDialog()
         assertTrue(result)
@@ -83,8 +84,8 @@ class AppPreferencesTest{
     @Test
     fun `test shouldShowFeedbackDialog returns false when use count is less than 5`() {
 
-        every { sharedPref.getInt(KEY_APP_USE_COUNT, 0) } returns 3  // Mock use count as 3
-        every { sharedPref.getBoolean(KEY_HAS_RATED, false) } returns false  // Mock has not rated
+        every { sharedPref.getInt(KEY_APP_USE_COUNT, 0) } returns 3
+        every { sharedPref.getBoolean(KEY_HAS_RATED, false) } returns false
 
         val result = appPreferences.shouldShowFeedbackDialog()
         assertFalse(result)
@@ -93,8 +94,8 @@ class AppPreferencesTest{
     @Test
     fun `test shouldShowFeedbackDialog returns false when user has already rated`() {
 
-        every { sharedPref.getInt(KEY_APP_USE_COUNT, 0) } returns 6  // Mock use count as 6
-        every { sharedPref.getBoolean(KEY_HAS_RATED, false) } returns true  // Mock has rated
+        every { sharedPref.getInt(KEY_APP_USE_COUNT, 0) } returns 6
+        every { sharedPref.getBoolean(KEY_HAS_RATED, false) } returns true
 
         val result = appPreferences.shouldShowFeedbackDialog()
         assertFalse(result)
@@ -129,6 +130,18 @@ class AppPreferencesTest{
 
         verify(exactly = 0) { editor.putInt(KEY_APP_USE_COUNT, 0) }
         verify(exactly = 0) { editor.apply() }
+    }
+
+    @Test
+    fun `test setFeedbackDialogNotToShow sets preference to true`() {
+        every { sharedPref.edit() } returns editor
+        every { editor.putBoolean(KEY_NOT_TO_SHOW, true) } returns editor
+        every { editor.apply() } just runs
+
+        appPreferences.setFeedbackDialogNotToShow()
+
+        verify { editor.putBoolean(KEY_NOT_TO_SHOW, true) }
+        verify { editor.apply() }
     }
 
 }

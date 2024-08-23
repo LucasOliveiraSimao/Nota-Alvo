@@ -4,13 +4,12 @@ import com.lucassimao.notaalvo.preferences.AppPreferences
 
 class FeedbackManager(
     private val appPreferences: AppPreferences,
-    private val reviewFlowLauncher: ReviewFlowLauncher
+    private val reviewManager: ReviewManager
 ) {
 
-    fun showFeedbackDialog() {
+    fun openAppRating() {
         if (appPreferences.hasUserRated().not()) {
-            reviewFlowLauncher.launchReviewFlow()
-            appPreferences.setUserRated()
+            reviewManager.launchReview()
         }
     }
 }
