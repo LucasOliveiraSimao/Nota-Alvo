@@ -55,9 +55,6 @@ jobs:
         with:
           gradlePath: app/build.gradle.kts
           versionCode: ${{ github.run_number }}
-          
-      - name: Build Release Bundle
-        run: ./gradlew bundleRelease
 
       - name: Sign Android Release
         uses: r0adkll/sign-android-release@v1
