@@ -56,6 +56,13 @@ jobs:
           gradlePath: app/build.gradle.kts
           versionCode: ${{ github.run_number }}
 
+      - name: Build Android Bundle
+        run: ./gradlew bundle
+        env:
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          STORE_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          
       - name: Sign Android Release
         uses: r0adkll/sign-android-release@v1
         with:
