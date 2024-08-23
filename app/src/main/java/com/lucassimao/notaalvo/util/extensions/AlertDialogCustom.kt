@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.annotation.StringRes
 import com.lucassimao.notaalvo.R
 
-@SuppressLint("StringFormatMatches", "InflateParams")
+@SuppressLint("InflateParams")
 fun Activity.showCustomAlertDialog(
     @StringRes title: Int,
     @StringRes message: Int,
@@ -30,5 +30,30 @@ fun Activity.showCustomAlertDialog(
             close()
         }
         create().show()
+    }
+}
+
+fun Activity.showRatingDialog(
+    openRating: () -> Unit,
+    notRating: () -> Unit,
+    laterRating: () -> Unit
+) {
+    AlertDialog.Builder(this).apply {
+        setTitle("Avalie o App")
+        setMessage("Se você gostou do nosso aplicativo, por favor, avalie-o na Google Play Store. Isso nos ajuda a melhorar e continuar oferecendo um bom serviço.")
+        setCancelable(false)
+        setPositiveButton("Avaliar") { _, _ ->
+            openRating()
+        }
+        setNegativeButton("Não, obrigado") { dialog, _ ->
+            dialog.dismiss()
+            notRating()
+        }
+        setNeutralButton("Mais tarde") { dialog, _ ->
+            dialog.dismiss()
+            laterRating()
+        }
+        create().show()
+
     }
 }

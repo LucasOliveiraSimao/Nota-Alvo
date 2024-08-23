@@ -6,15 +6,15 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroCustomLayoutFragment
-import com.lucassimao.notaalvo.presentation.calculator.CalculatorActivity
 import com.lucassimao.notaalvo.R
+import com.lucassimao.notaalvo.presentation.calculator.CalculatorActivity
+import org.koin.android.ext.android.inject
 
 class OnboardingActivity : AppIntro() {
-    private lateinit var onboardingManager: OnboardingManager
+    private val onboardingManager: OnboardingManager by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        onboardingManager = OnboardingManager(baseContext)
 
         if (onboardingManager.shouldShowOnboarding()) {
             setupSlider()

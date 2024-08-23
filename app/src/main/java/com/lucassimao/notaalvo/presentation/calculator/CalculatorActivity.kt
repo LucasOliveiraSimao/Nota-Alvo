@@ -12,9 +12,10 @@ import com.lucassimao.notaalvo.preferences.AppPreferences
 import com.lucassimao.notaalvo.presentation.ads.AdManager
 import com.lucassimao.notaalvo.presentation.review.FeedbackManager
 import com.lucassimao.notaalvo.util.ScoreStatus
-import com.lucassimao.notaalvo.util.inflateMenu
 import com.lucassimao.notaalvo.util.extensions.shareApp
 import com.lucassimao.notaalvo.util.extensions.showCustomAlertDialog
+import com.lucassimao.notaalvo.util.extensions.showRatingDialog
+import com.lucassimao.notaalvo.util.inflateMenu
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -44,9 +45,19 @@ class CalculatorActivity : AppCompatActivity() {
 
     private fun handleAppUsage() {
         appPreferences.incrementAppUseCount()
-        appPreferences.resetAppUseCountIfNeeded()
         if (appPreferences.shouldShowFeedbackDialog()) {
-            feedbackManager.showFeedbackDialog()
+            showRatingDialog(
+                openRating = {
+                    feedbackManager.openAppRating()
+                    appPreferences.setUserRated()
+                },
+                notRating = {
+                    appPreferences.setFeedbackDialogNotToShow()
+                },
+                laterRating = {
+                    appPreferences.resetAppUseCountIfNeeded()
+                }
+            )
         }
     }
 
@@ -104,40 +115,29 @@ class CalculatorActivity : AppCompatActivity() {
                 scoreResult.titleResId!!,
                 scoreResult.messageResId!!,
                 scoreResult.examScore.toString()
-            ) {
-                clearUserScoreAndTextView()
-            }
+            ) { clearUserScoreAndTextView() }
 
             ScoreStatus.NEEDS_FINAL_EXAM -> showCustomAlertDialog(
                 scoreResult.titleResId!!,
                 scoreResult.messageResId!!,
                 scoreResult.examScore.toString()
-            ) {
-                clearUserScoreAndTextView()
-            }
+            ) { clearUserScoreAndTextView() }
 
-            ScoreStatus.NEEDS_EXAM_FOR_APPROVAL -> {
-                showCustomAlertDialog(
-                    scoreResult.titleResId!!,
-                    scoreResult.messageResId!!,
-                    calculatorViewModel.getCalculateScore(scoreResult.examScore)
-                ) { clearUserScoreAndTextView() }
-            }
+            ScoreStatus.NEEDS_EXAM_FOR_APPROVAL -> showCustomAlertDialog(
+                scoreResult.titleResId!!,
+                scoreResult.messageResId!!,
+                calculatorViewModel.getCalculateScore(scoreResult.examScore)
+            ) { clearUserScoreAndTextView() }
 
-            ScoreStatus.FAILED -> {
-                showCustomAlertDialog(
-                    scoreResult.titleResId!!,
-                    scoreResult.messageResId!!,
-                    scoreResult.examScore.toString()
-                ) {
-                    clearUserScoreAndTextView()
-                }
-            }
+            ScoreStatus.FAILED -> showCustomAlertDialog(
+                scoreResult.titleResId!!,
+                scoreResult.messageResId!!,
+                scoreResult.examScore.toString()
+            ) { clearUserScoreAndTextView() }
 
-            null -> TODO()
+            null -> return
         }
     }
-
 
     private fun clearUserScoreAndTextView() {
         calculatorViewModel.clearUserScore()
