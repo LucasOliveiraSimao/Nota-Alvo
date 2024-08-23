@@ -11,5 +11,5 @@ object Constants {
 
     const val IS_FIRST_TIME_KEY = "is_first_time"
 
-    const val MIN_LAUNCH_COUNT_FOR_DIALOG = 3
+    const val MIN_LAUNCH_COUNT_FOR_DIALOG = 5
 }
