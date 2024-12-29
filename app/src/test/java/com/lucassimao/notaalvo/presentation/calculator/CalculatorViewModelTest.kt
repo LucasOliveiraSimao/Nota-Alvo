@@ -2,7 +2,7 @@ package com.lucassimao.notaalvo.presentation.calculator
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.lucassimao.notaalvo.R
-import com.lucassimao.notaalvo.domain.model.ScoreResult
+import com.lucassimao.notaalvo.data.model.ScoreResult
 import com.lucassimao.notaalvo.domain.usecase.CalculateScoreUseCase
 import com.lucassimao.notaalvo.domain.usecase.EvaluateScoreUseCase
 import com.lucassimao.notaalvo.getValueForTest

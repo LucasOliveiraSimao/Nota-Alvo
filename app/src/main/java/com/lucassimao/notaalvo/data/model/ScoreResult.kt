@@ -1,4 +1,4 @@
-package com.lucassimao.notaalvo.domain.model
+package com.lucassimao.notaalvo.data.model
 
 import com.lucassimao.notaalvo.util.ScoreStatus
 
