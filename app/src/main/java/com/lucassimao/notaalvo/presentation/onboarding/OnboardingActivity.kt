@@ -1,4 +1,4 @@
-package com.lucassimao.notaalvo
+package com.lucassimao.notaalvo.presentation.onboarding
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,13 +6,15 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroCustomLayoutFragment
+import com.lucassimao.notaalvo.R
+import com.lucassimao.notaalvo.presentation.calculator.CalculatorActivity
+import org.koin.android.ext.android.inject
 
 class OnboardingActivity : AppIntro() {
-    private lateinit var onboardingManager: OnboardingManager
+    private val onboardingManager: OnboardingManager by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        onboardingManager = OnboardingManager(baseContext)
 
         if (onboardingManager.shouldShowOnboarding()) {
             setupSlider()
@@ -66,6 +68,6 @@ class OnboardingActivity : AppIntro() {
     }
 
     private fun gotToMainScreen() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, CalculatorActivity::class.java))
     }
 }

@@ -1,37 +1,49 @@
-name: Android Deploy
+name: Android Release Deployment
 
 on:
   pull_request:
     branches: [ "master" ]
 
-env:
-  JAVA_VERSION: '17'
-  DISTRIBUTION: 'temurin'
-  GRADLE_CACHE: ~/.gradle
-  JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
-  JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
-  ANDROID_HOME: /usr/local/lib/android/sdk
-  ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
-
-defaults:
-  run:
-    shell: bash
-
 jobs:
-  prepare:
-    name: Prepare Environment
+  deploy_to_play_store:
+    name: Deploy Android App to Google Play Store
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout the code
+      - name: Checkout Code
         uses: actions/checkout@v4.1.1
 
-      - name: Cache prepared Gradlew
+      - name: Cache Gradle and Java
         uses: actions/cache@v4
         with:
-          path: ./gradlew
-          key: ${{ runner.os }}-gradlew-${{ hashFiles('./gradlew') }}
+          path: |
+            ~/.gradle
+            ~/.m2/repository
+            ~/.java
+          key: ${{ runner.os }}-gradle-java-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}-${{ hashFiles('build.gradle') }}
           restore-keys: |
-            ${{ runner.os }}-gradlew-
+            ${{ runner.os }}-gradle-java-
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4.0.0
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Grant Execute Permission for Gradlew
+        run: chmod +x gradlew
+
+      - name: Load Google Service File
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: echo $DATA | base64 -di > app/google-services.json
+
+      - name: Decode and Save Keystore File
+        env:
+          KEYSTORE_FILE_BASE64: ${{ secrets.KEYSTORE }}
+        run: |
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/key_app_nota_alvo.jks
 
       - name: Create local.properties
         run: |
@@ -39,153 +51,42 @@ jobs:
           echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
           echo "ADMOB_APP_ID_TEST=${{ secrets.ADMOB_APP_ID_TEST }}" >> local.properties
           echo "ADMOB_APP_ID_PROD=${{ secrets.ADMOB_APP_ID_PROD }}" >> local.properties
-      - name: Upload local.properties
-        uses: actions/upload-artifact@v4
-        with:
-          name: local-properties
-          path: local.properties
+          echo "storeFile=key_app_nota_alvo.jks" >> app/keystore.properties
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/keystore.jks
+          echo "storePassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> app/keystore.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
 
-  lint:
-    name: Static Code Analysis
-    runs-on: ubuntu-latest
-    needs: prepare
-    steps:
-      - name: Checkout the code
-        uses: actions/checkout@v4.1.1
-
-      - name: Set up JDK ${{ env.JAVA_VERSION }}
-        uses: actions/setup-java@v4.0.0
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: ${{ env.DISTRIBUTION }}
-          cache: 'gradle'
-
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.GRADLE_CACHE }}
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Download local.properties
-        uses: actions/download-artifact@v4
-        with:
-          name: local-properties
-          path: .
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-        
-      - name: Run lint
-        run: ./gradlew lintRelease
-
-      - name: Upload lint report
-        uses: actions/upload-artifact@v4
-        with:
-          name: lint-results-debug.html
-          path: app/build/reports/lint-results-debug.html
-
-  unit-test:
-    needs: [ lint ]
-    name: Unit Tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4.1.1
-
-      - name: Set up JDK ${{ env.JAVA_VERSION }}
-        uses: actions/setup-java@v4.0.0
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: ${{ env.DISTRIBUTION }}
-          cache: 'gradle'
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.GRADLE_CACHE }}
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Download local.properties
-        uses: actions/download-artifact@v4
-        with:
-          name: local-properties
-          path: .
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-        
-      - name: Run unit tests
-        run: ./gradlew test
-
-      - name: Upload unit tests report
-        uses: actions/upload-artifact@v4
-        with:
-          name: unit_test_report
-          path: app/build/reports/tests/testDebugUnitTest/
-
-  distribute:
-    name: Distribute on Google Play Store
-    needs: [ unit-test ]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4.1.1
-
-      - name: Set up JDK ${{ env.JAVA_VERSION }}
-        uses: actions/setup-java@v4.0.0
-        with:
-          distribution: ${{ env.DISTRIBUTION }}
-          java-version: ${{ env.JAVA_VERSION }}
-          cache: 'gradle'
-
-      - name: Version Bump
+      - name: Increment App Version Code
         uses: chkfung/android-version-actions@v1.2.1
         with:
           gradlePath: app/build.gradle.kts
           versionCode: ${{ github.run_number }}
 
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.GRADLE_CACHE }}
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Download local.properties
-        uses: actions/download-artifact@v4
-        with:
-          name: local-properties
-          path: .
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-        
-      - name: Assemble Release Bundle
-        run: ./gradlew bundleRelease
-
-      - name: Sign Release
+      - name: Build Android Bundle
+        run: ./gradlew bundle
+        env:
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          STORE_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          
+      - name: Sign Android Release
         uses: r0adkll/sign-android-release@v1
         with:
           releaseDirectory: app/build/outputs/bundle/release
           signingKeyBase64: ${{ secrets.KEYSTORE }}
-          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
-          alias: ${{ secrets.APP_NAME_KEY }}
-          keyPassword: ${{ secrets.APP_NAME_KEY_PASSWORD }}
+          keyStorePassword: ${{ secrets.KEY_PASSWORD }}
+          alias: ${{ secrets.KEY_ALIAS }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
 
-      - name: Setup Authorization With Google Play Store
+      - name: Set Up Google Play Store Authorization
         run: echo '${{ secrets.GOOGLE_PLAY_API_AUTH }}' > service_account.json
 
-      - name: Deploy
+      - name: Upload Release to Google Play Store
         uses: r0adkll/upload-google-play@v1.1.1
         with:
           serviceAccountJson: service_account.json
           packageName: com.lucassimao.notaalvo
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
-          track: production
+          track: alpha
           status: 'completed'

@@ -1,4 +1,4 @@
-name: Android Build
+name: Android Build Pipeline
 
 on:
   pull_request:
@@ -6,34 +6,43 @@ on:
 
 jobs:
   lint:
-    name: Static Code Analysis
+    name: Lint Codebase
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the code
+      - name: Checkout Code
         uses: actions/checkout@v4.1.1
 
-      - name: set up JDK 17
+      - name: Cache Gradle and Java
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle
+            ~/.m2/repository
+            ~/.java
+          key: ${{ runner.os }}-gradle-java-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}-${{ hashFiles('build.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-java-
+
+      - name: Setup JDK 17
         uses: actions/setup-java@v4.0.0
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
 
-      - name: Grant execute permission for gradlew
+      - name: Grant Execute Permission for Gradlew
         run: chmod +x gradlew
 
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.gradle
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+      - name: Load Google Service File
         env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
-          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
-          ANDROID_HOME: /usr/local/lib/android/sdk
-          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+          DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: echo $DATA | base64 -di > app/google-services.json
+
+      - name: Decode and Save Keystore File
+        env:
+          KEYSTORE_FILE_BASE64: ${{ secrets.KEYSTORE }}
+        run: |
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/key_app_nota_alvo.jks
 
       - name: Create local.properties
         run: |
@@ -41,108 +50,146 @@ jobs:
           echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
           echo "ADMOB_APP_ID_TEST=${{ secrets.ADMOB_APP_ID_TEST }}" >> local.properties
           echo "ADMOB_APP_ID_PROD=${{ secrets.ADMOB_APP_ID_PROD }}" >> local.properties
+          echo "storeFile=key_app_nota_alvo.jks" >> app/keystore.properties
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/keystore.jks
+          echo "storePassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> app/keystore.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
 
-      - name: Run lint
+      - name: Run Lint Analysis
         run: ./gradlew lintDebug
 
-      - name: Upload lint report
+      - name: Upload Lint Report
         uses: actions/upload-artifact@v4
         with:
-          name: lint-results-debug.html
+          name: Lint Report
           path: app/build/reports/lint-results-debug.html
 
-  unit-test:
+  unit-tests:
     needs: [ lint ]
-    name: Unit Tests
+    name: Run Unit Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.1
-
-      - name: set up JDK 17
-        uses: actions/setup-java@v4.0.0
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: 'gradle'
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.gradle
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-        env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
-          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
-          ANDROID_HOME: /usr/local/lib/android/sdk
-          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
-
-      - name: Create local.properties
-        run: |
-          echo "sdk.dir=${{ secrets.SDK_LOCATION }}" > local.properties
-          echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
-          echo "ADMOB_APP_ID_TEST=${{ secrets.ADMOB_APP_ID_TEST }}" >> local.properties
-          echo "ADMOB_APP_ID_PROD=${{ secrets.ADMOB_APP_ID_PROD }}" >> local.properties
-
-      - name: Run unit tests
-        run: ./gradlew test
-
-      - name: Upload unit tests report
-        uses: actions/upload-artifact@v4
-        with:
-          name: unit_test_report
-          path: app/build/reports/tests/testDebugUnitTest/
-
-  package:
-    needs: [ unit-test ]
-    name: Generate Android App Bundle
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the code
+      - name: Checkout Code
         uses: actions/checkout@v4.1.1
 
-      - name: set up JDK 17
+      - name: Cache Gradle and Java
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle
+            ~/.m2/repository
+            ~/.java
+          key: ${{ runner.os }}-gradle-java-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}-${{ hashFiles('build.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-java-
+
+      - name: Setup JDK 17
         uses: actions/setup-java@v4.0.0
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
 
-      - name: Grant execute permission for gradlew
+      - name: Grant Execute Permission for Gradlew
         run: chmod +x gradlew
-
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.gradle
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+ 
+      - name: Load Google Service File
         env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
-          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
-          ANDROID_HOME: /usr/local/lib/android/sdk
-          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+          DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: echo $DATA | base64 -di > app/google-services.json
 
+      - name: Decode and Save Keystore File
+        env:
+          KEYSTORE_FILE_BASE64: ${{ secrets.KEYSTORE }}
+        run: |
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/key_app_nota_alvo.jks
+      
       - name: Create local.properties
         run: |
           echo "sdk.dir=${{ secrets.SDK_LOCATION }}" > local.properties
           echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
           echo "ADMOB_APP_ID_TEST=${{ secrets.ADMOB_APP_ID_TEST }}" >> local.properties
           echo "ADMOB_APP_ID_PROD=${{ secrets.ADMOB_APP_ID_PROD }}" >> local.properties
+          echo "storeFile=key_app_nota_alvo.jks" >> app/keystore.properties
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/keystore.jks
+          echo "storePassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> app/keystore.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
 
-      - name: Build Android App Bundle
-        run: ./gradlew bundle
+      - name: Execute Unit Tests
+        run: ./gradlew test
 
-      - name: Upload Android App Bundle
+      - name: Upload Unit Test Report
         uses: actions/upload-artifact@v4
         with:
-          name: app-release.aab
+          name: Unit Test Report
+          path: app/build/reports/tests/testDebugUnitTest/
+
+  build:
+    needs: [ unit-tests ]
+    name: Build Android App Bundle
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4.1.1
+
+      - name: Cache Gradle and Java
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle
+            ~/.m2/repository
+            ~/.java
+          key: ${{ runner.os }}-gradle-java-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}-${{ hashFiles('build.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-java-
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4.0.0
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Grant Execute Permission for Gradlew
+        run: chmod +x gradlew
+
+      - name: Load Google Service File
+        env:
+          DATA: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: echo $DATA | base64 -di > app/google-services.json
+
+      - name: Decode and Save Keystore File
+        env:
+          KEYSTORE_FILE_BASE64: ${{ secrets.KEYSTORE }}
+        run: |
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/key_app_nota_alvo.jks
+      
+      - name: Create local.properties
+        run: |
+          echo "sdk.dir=${{ secrets.SDK_LOCATION }}" > local.properties
+          echo "ADMOB_APP_ID_APPLICATION=${{ secrets.ADMOB_APP_ID_APPLICATION }}" >> local.properties
+          echo "ADMOB_APP_ID_TEST=${{ secrets.ADMOB_APP_ID_TEST }}" >> local.properties
+          echo "ADMOB_APP_ID_PROD=${{ secrets.ADMOB_APP_ID_PROD }}" >> local.properties
+          echo "storeFile=key_app_nota_alvo.jks" >> app/keystore.properties
+          echo "$KEYSTORE_FILE_BASE64" | base64 --decode > app/keystore.jks
+          echo "storePassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> app/keystore.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
+
+      - name: Generate Android App Bundle
+        run: ./gradlew bundleRelease
+        env:
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          STORE_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Upload Android Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: Artifact Version
           path: app/build/outputs/bundle/release/app-release.aab
+
+      - name: Clean up
+        run: rm app/keystore.jks
