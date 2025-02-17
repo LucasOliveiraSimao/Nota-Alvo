@@ -3,7 +3,7 @@ package com.lucassimao.notaalvo.presentation.calculator
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.lucassimao.notaalvo.domain.model.ScoreResult
+import com.lucassimao.notaalvo.data.model.ScoreResult
 import com.lucassimao.notaalvo.domain.usecase.CalculateScoreUseCase
 import com.lucassimao.notaalvo.domain.usecase.EvaluateScoreUseCase
 import com.lucassimao.notaalvo.util.extensions.convertToDoubleOrZero

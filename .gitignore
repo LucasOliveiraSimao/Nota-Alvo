@@ -101,6 +101,7 @@ obj/
 .idea/migrations.xml
 .idea/other.xml
 .idea/androidTestResultsUserPreferences.xml
+.idea/runConfigurations.xml
 
 # Legacy Eclipse project files
 .classpath

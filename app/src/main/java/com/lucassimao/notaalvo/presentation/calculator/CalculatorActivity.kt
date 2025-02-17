@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.lucassimao.notaalvo.R
 import com.lucassimao.notaalvo.databinding.ActivityCalculatorBinding
-import com.lucassimao.notaalvo.domain.model.ScoreResult
+import com.lucassimao.notaalvo.data.model.ScoreResult
 import com.lucassimao.notaalvo.preferences.AppPreferences
 import com.lucassimao.notaalvo.presentation.ads.AdManager
 import com.lucassimao.notaalvo.presentation.review.FeedbackManager

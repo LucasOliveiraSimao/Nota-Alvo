@@ -1,7 +1,7 @@
 package com.lucassimao.notaalvo.domain.usecase
 
 import com.lucassimao.notaalvo.R
-import com.lucassimao.notaalvo.domain.model.ScoreResult
+import com.lucassimao.notaalvo.data.model.ScoreResult
 import com.lucassimao.notaalvo.util.ScoreStatus
 
 class EvaluateScoreUseCase {
