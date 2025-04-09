@@ -104,7 +104,7 @@ obj/
 .idea/codeStyles/codeStyleConfig.xml
 .idea/codeStyles/Project.xml
 .idea/runConfigurations.xml
-
+.idea/AndroidProjectSystem.xml
 # Legacy Eclipse project files
 .classpath
 .project
