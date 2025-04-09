@@ -26,16 +26,6 @@ jobs:
           restore-keys: |
             ${{ env.CACHE_KEY }}
 
-      - name: Save Cache
-        uses: actions/cache/save@v4
-        if: steps.cache.outputs.cache-hit != 'true'
-        with:
-          path: |
-            ~/.gradle
-            ~/.m2/repository
-            ~/.java
-          key: ${{ env.CACHE_KEY }}
-
       - name: Setup JDK 17
         uses: actions/setup-java@v4.0.0
         with:
@@ -96,16 +86,6 @@ jobs:
           key: ${{ env.CACHE_KEY }}
           restore-keys: |
             ${{ env.CACHE_KEY }}
-
-      - name: Save Cache
-        uses: actions/cache/save@v4
-        if: steps.cache.outputs.cache-hit != 'true'
-        with:
-          path: |
-            ~/.gradle
-            ~/.m2/repository
-            ~/.java
-          key: ${{ env.CACHE_KEY }}
 
       - name: Setup JDK 17
         uses: actions/setup-java@v4.0.0
@@ -168,16 +148,6 @@ jobs:
           restore-keys: |
             ${{ env.CACHE_KEY }}
 
-      - name: Save Cache
-        uses: actions/cache/save@v4
-        if: steps.cache.outputs.cache-hit != 'true'
-        with:
-          path: |
-            ~/.gradle
-            ~/.m2/repository
-            ~/.java
-          key: ${{ env.CACHE_KEY }}
-
       - name: Setup JDK 17
         uses: actions/setup-java@v4.0.0
         with:
@@ -226,3 +196,13 @@ jobs:
 
       - name: Clean up
         run: rm app/keystore.jks
+
+      - name: Save Cache
+        uses: actions/cache/save@v4
+        if: steps.cache.outputs.cache-hit != 'true'
+        with:
+          path: |
+            ~/.gradle
+            ~/.m2/repository
+            ~/.java
+          key: ${{ env.CACHE_KEY }}
