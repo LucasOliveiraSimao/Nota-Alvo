@@ -24,7 +24,9 @@
     <color name="title_intro_one_color">#000000</color>
     <color name="description_intro_one_color">#000000</color>
 
-    <color name="title_intro_two_color">#000000</color>
+    <color name="title_intro_two_color">#FFFFFF</color>
 
     <color name="title_intro_three_color">#000000</color>
+
+    <color name="background">#0C1319</color>
 </resources>
