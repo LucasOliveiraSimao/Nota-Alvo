@@ -13,11 +13,11 @@
         app:layout_constraintGuide_percent="0.05" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/intro2_tvTitle"
         style="@style/AppTitleIntroThree"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/intro_manual_grade_calculation_instruction"
+        android:text="@string/label_final_exam_score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
@@ -29,7 +29,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintTop_toBottomOf="@id/intro2_tvTitle"
         tools:ignore="ContentDescription" />
 
     <androidx.constraintlayout.widget.Guideline
