@@ -84,6 +84,8 @@ android {
 
 dependencies {
 
+    implementation("com.airbnb.android:lottie:3.4.0")
+
     implementation("io.insert-koin:koin-android:3.3.0")
 
     implementation("com.google.android.gms:play-services-ads:22.6.0")
