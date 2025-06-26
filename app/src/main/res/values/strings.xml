@@ -38,11 +38,10 @@
     <string name="intro_welcome_title">Bem-vindo ao Nota Alvo!</string>
     <string name="intro_welcome_description">Desbrave a vida acadêmica com facilidade. Esta ferramenta foi criada especialmente para os alunos da UFAM, tornando seus desafios mais simples.</string>
 
-    <!-- Instrução para inserir média -->
-    <string name="intro_enter_grade_instruction">Insira sua média (ME) disponível no eCampus para começar.</string>
-
-    <!-- Instrução para cálculo manual da média -->
-    <string name="intro_manual_grade_calculation_instruction">Ou, se preferir, faça o cálculo manual da sua média. Exemplo: Se você realizou 3 provas com notas 4,5; 6,1 e 8,4, basta somá-las e dividir pelo número de provas, resultando em (4,5 + 6,1 + 8,4)/3, que dá 6,33. Insira este valor no app, e ele calculará sua nota automaticamente</string>
+    <!-- Mensagem Intro 2 -->
+    <string name="label_enter_partial_average">Digite sua média parcial (MEE) disponível no Ecampus.</string>
+    <string name="label_final_exam_score">Descubra instantaneamente o quanto você precisa tirar na Prova Final para garantir sua aprovação.</string>
+    <string name="label_how_it_works">Como funciona?</string>
 
     <!-- Botões de ação -->
     <string name="done">Finalizar</string>
