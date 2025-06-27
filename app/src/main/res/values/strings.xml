@@ -35,8 +35,8 @@
     <string name="final_exam_requirement_note">A nota necessária para a aprovação na Prova Final é: %1$s</string>
 
     <!-- Mensagem de boas-vindas -->
-    <string name="intro_welcome_title">Bem-vindo ao Nota Alvo!</string>
-    <string name="intro_welcome_description">Desbrave a vida acadêmica com facilidade. Esta ferramenta foi criada especialmente para os alunos da UFAM, tornando seus desafios mais simples.</string>
+    <string name="intro_welcome_title">Bem-vindo \n ao \n Nota Alvo!</string>
+    <string name="intro_welcome_description">Aqui você calcula a nota necessária \n para passar na disciplina de forma \n simples e rápida.</string>
 
     <!-- Mensagem Intro 2 -->
     <string name="label_enter_partial_average">Digite sua média parcial (MEE) disponível no Ecampus.</string>
