@@ -3,11 +3,9 @@
     <style name="Base.Theme.NotaAlvo" parent="Theme.Material3.Light">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="android:windowBackground">@color/background</item>
-    </style>
-
-    <style name="Theme.NotaAlvo" parent="Base.Theme.NotaAlvo">
         <item name="android:windowBackground">@color/app_background</item>
     </style>
+
+    <style name="Theme.NotaAlvo" parent="Base.Theme.NotaAlvo"></style>
 
 </resources>
