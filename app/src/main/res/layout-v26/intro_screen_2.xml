@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#0C1319">
 
     <TextView
         android:id="@+id/intro2_tvTitle"
-        style="@style/AppTitleIntroTwo"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="@string/label_how_it_works"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="Como funciona?"
+        android:textColor="#ffff"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,6 +25,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/label_enter_partial_average"
+        android:textColor="#ffff"
         app:layout_constraintBottom_toTopOf="@id/guideline1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,14 +58,17 @@
         app:layout_constraintGuide_percent="0.75" />
 
 
-    <TextView
-        android:id="@+id/intro2_tvFinalExamScore"
-        style="@style/AppTitleIntroTwo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/label_final_exam_score"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline2" />
+        <TextView
+            android:id="@+id/intro2_tvFinalExamScore"
+            style="@style/AppTitleIntroTwo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/label_final_exam_score"
+            android:textColor="#ffff"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:justificationMode="inter_word"
+            app:layout_constraintTop_toBottomOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
