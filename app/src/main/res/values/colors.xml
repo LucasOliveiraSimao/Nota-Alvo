@@ -13,18 +13,20 @@
 
     <color name="text_view_text_color">#000000</color>
 
-    <color name="skip_button">#000000</color>
+    <color name="skip_button">#FFFFFF</color>
 
-    <color name="done_text">#000000</color>
+    <color name="done_text">#FFFFFF</color>
 
-    <color name="next_arrow">#000000</color>
+    <color name="next_arrow">#FFFFFF</color>
     <color name="selected_indicator">#000000</color>
     <color name="unselected_indicator">#B3BFC0</color>
 
-    <color name="title_intro_one_color">#000000</color>
-    <color name="description_intro_one_color">#000000</color>
+    <color name="title_intro_one_color">#FFFFFF</color>
+    <color name="description_intro_one_color">#FFFFFF</color>
 
     <color name="title_intro_two_color">#000000</color>
 
     <color name="title_intro_three_color">#000000</color>
+
+    <color name="app_background">#0C1319</color>
 </resources>
