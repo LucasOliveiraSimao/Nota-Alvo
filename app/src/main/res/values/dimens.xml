@@ -8,10 +8,10 @@
     <dimen name="button_corner_radius">25dp</dimen>
 
     <dimen name="title_intro_one_margin">8dp</dimen>
-    <dimen name="title_intro_one_text_size">24sp</dimen>
+    <dimen name="title_intro_one_text_size">40sp</dimen>
 
     <dimen name="description_intro_one_margin">16dp</dimen>
-    <dimen name="description_intro_one_text_size">20sp</dimen>
+    <dimen name="description_intro_one_text_size">22sp</dimen>
 
     <dimen name="title_intro_two_margin">8dp</dimen>
     <dimen name="title_intro_two_text_size">24sp</dimen>
