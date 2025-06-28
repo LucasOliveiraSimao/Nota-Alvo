@@ -50,6 +50,13 @@
         <item name="android:textColor">@color/title_intro_two_color</item>
     </style>
 
+    <style name="AppDescIntroTwo">
+        <item name="android:layout_margin">@dimen/desc_intro_two_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/desc_intro_two_text_size</item>
+        <item name="android:textColor">@color/desc_intro_two_color</item>
+    </style>
+
     <style name="AppImageIntroTwo">
         <item name="android:layout_marginTop">@dimen/image_intro_two_margin_top</item>
         <item name="android:scaleType">centerCrop</item>
@@ -62,6 +69,13 @@
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/title_intro_three_text_size</item>
         <item name="android:textColor">@color/title_intro_three_color</item>
+    </style>
+
+    <style name="AppDescIntroThree">
+        <item name="android:layout_margin">@dimen/desc_intro_three_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/desc_intro_three_text_size</item>
+        <item name="android:textColor">@color/desc_intro_three_color</item>
     </style>
 
     <style name="AppImageIntroThree">
