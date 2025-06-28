@@ -9,11 +9,11 @@
     <!-- Botões e operadores -->
     <string name="close">Fechar</string>
     <string name="equals">=</string>
-    <string name="zero">0</string>
     <string name="erase_all">CE</string>
     <string name="erase">←</string>
 
     <!-- Números -->
+    <string name="zero">0</string>
     <string name="number_1">1</string>
     <string name="number_2">2</string>
     <string name="number_3">3</string>
@@ -34,14 +34,19 @@
     <!-- Mensagem com a nota necessária para a Prova Final -->
     <string name="final_exam_requirement_note">A nota necessária para a aprovação na Prova Final é: %1$s</string>
 
-    <!-- Mensagem de boas-vindas -->
+    <!-- Mensagem Intro 1 -->
     <string name="intro_welcome_title">Bem-vindo \n ao \n Nota Alvo!</string>
     <string name="intro_welcome_description">Aqui você calcula a nota necessária \n para passar na disciplina de forma \n simples e rápida.</string>
 
     <!-- Mensagem Intro 2 -->
     <string name="label_enter_partial_average">Digite sua média parcial (MEE) disponível no Ecampus.</string>
-    <string name="label_final_exam_score">Descubra instantaneamente o quanto você precisa tirar na Prova Final para garantir sua aprovação.</string>
+    <string name="label_find_out_instantly_how_much_you_need">Descubra instantaneamente o quanto precisa tirar na prova final.</string>
     <string name="label_how_it_works">Como funciona?</string>
+
+    <!-- Mensagem Intro 3 -->
+    <string name="label_ready_to_start">Pronto para começar?</string>
+    <string name="label_track_your_performance">Acompanhe seu desempenho e \n garanta a aprovação!</string>
+    <string name="label_we_are_here_to_help_you">Estamos aqui para ajudar você a \n atingir sua meta.</string>
 
     <!-- Botões de ação -->
     <string name="done">Finalizar</string>
