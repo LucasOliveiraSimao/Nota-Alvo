@@ -25,8 +25,10 @@
     <color name="description_intro_one_color">#FFFFFF</color>
 
     <color name="title_intro_two_color">#FFFFFF</color>
+    <color name="desc_intro_two_color">#FFFFFF</color>
 
-    <color name="title_intro_three_color">#000000</color>
+    <color name="title_intro_three_color">#FFFFFF</color>
+    <color name="desc_intro_three_color">#FFFFFF</color>
 
     <color name="app_background">#0C1319</color>
 </resources>
