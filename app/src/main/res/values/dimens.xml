@@ -2,9 +2,9 @@
 <resources>
     <dimen name="button_margin">2dp</dimen>
     <dimen name="number_button_text_size">30dp</dimen>
-    <dimen name="text_view_result_height">160dp</dimen>
+    <dimen name="text_view_result_height">260dp</dimen>
     <dimen name="text_view_result_padding_end">36dp</dimen>
-    <dimen name="text_view_text_size">52sp</dimen>
+    <dimen name="text_view_text_size">62sp</dimen>
     <dimen name="button_corner_radius">25dp</dimen>
 
     <dimen name="title_intro_one_margin">8dp</dimen>
@@ -28,4 +28,6 @@
     <dimen name="desc_intro_three_text_size">26sp</dimen>
 
     <dimen name="image_intro_three_margin_top">8dp</dimen>
+
+    <dimen name="main_layout_element_height_weight">0.3</dimen>
 </resources>

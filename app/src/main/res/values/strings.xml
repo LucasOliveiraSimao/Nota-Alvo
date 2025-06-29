@@ -8,9 +8,9 @@
 
     <!-- Botões e operadores -->
     <string name="close">Fechar</string>
-    <string name="equals">=</string>
+    <string name="equals">CAL</string>
     <string name="erase_all">CE</string>
-    <string name="erase">←</string>
+    <string name="erase">DEL</string>
 
     <!-- Números -->
     <string name="zero">0</string>
