@@ -23,7 +23,7 @@ android {
 
     defaultConfig {
         applicationId = "com.lucassimao.notaalvo"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 37
         versionName = "3.0.0"
