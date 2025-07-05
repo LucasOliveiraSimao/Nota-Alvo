@@ -7,14 +7,19 @@ import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroCustomLayoutFragment
 import com.lucassimao.notaalvo.R
+import com.lucassimao.notaalvo.data.analytics.AnalyticsManager
 import com.lucassimao.notaalvo.presentation.calculator.CalculatorActivity
+import com.lucassimao.notaalvo.data.analytics.AnalyticsEvents
 import org.koin.android.ext.android.inject
 
 class OnboardingActivity : AppIntro() {
     private val onboardingManager: OnboardingManager by inject()
+    private val analyticsManager: AnalyticsManager by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        analyticsManager.logEvent(AnalyticsEvents.SCREEN_ONBOARDING)
 
         if (onboardingManager.shouldShowOnboarding()) {
             setupSlider()
@@ -55,6 +60,7 @@ class OnboardingActivity : AppIntro() {
 
     override fun onSkipPressed(currentFragment: Fragment?) {
         super.onSkipPressed(currentFragment)
+        analyticsManager.logEvent(AnalyticsEvents.ON_SKIP_PRESSED)
         onboardingManager.setOnboardingShown()
         gotToMainScreen()
         finish()
@@ -62,6 +68,7 @@ class OnboardingActivity : AppIntro() {
 
     override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
+        analyticsManager.logEvent(AnalyticsEvents.ON_DONE_PRESSED)
         onboardingManager.setOnboardingShown()
         gotToMainScreen()
         finish()

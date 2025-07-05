@@ -1,6 +1,6 @@
 package com.lucassimao.notaalvo.presentation.review
 
-import com.lucassimao.notaalvo.preferences.AppPreferences
+import com.lucassimao.notaalvo.data.preferences.AppPreferences
 
 class FeedbackManager(
     private val appPreferences: AppPreferences,

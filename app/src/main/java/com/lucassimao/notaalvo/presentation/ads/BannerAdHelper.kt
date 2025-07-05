@@ -8,7 +8,7 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.lucassimao.notaalvo.BuildConfig
 
-class AdManager(private val context: Context, private val adContainer: ViewGroup) {
+class BannerAdHelper(private val context: Context, private val adContainer: ViewGroup) {
     private lateinit var adView: AdView
 
     fun initializeAds() {

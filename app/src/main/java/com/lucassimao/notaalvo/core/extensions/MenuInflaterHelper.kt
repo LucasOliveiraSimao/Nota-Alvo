@@ -1,4 +1,4 @@
-package com.lucassimao.notaalvo.util
+package com.lucassimao.notaalvo.core.extensions
 
 import android.view.Menu
 import android.view.MenuInflater

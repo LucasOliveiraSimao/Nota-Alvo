@@ -1,10 +1,10 @@
-package com.lucassimao.notaalvo.preferences
+package com.lucassimao.notaalvo.data.preferences
 
 import android.content.SharedPreferences
-import com.lucassimao.notaalvo.util.Constants.KEY_APP_USE_COUNT
-import com.lucassimao.notaalvo.util.Constants.KEY_HAS_RATED
-import com.lucassimao.notaalvo.util.Constants.KEY_NOT_TO_SHOW
-import com.lucassimao.notaalvo.util.Constants.MIN_LAUNCH_COUNT_FOR_DIALOG
+import com.lucassimao.notaalvo.core.constants.Constants.KEY_APP_USE_COUNT
+import com.lucassimao.notaalvo.core.constants.Constants.KEY_HAS_RATED
+import com.lucassimao.notaalvo.core.constants.Constants.KEY_NOT_TO_SHOW
+import com.lucassimao.notaalvo.core.constants.Constants.MIN_LAUNCH_COUNT_FOR_DIALOG
 
 
 class AppPreferences(private val prefs: SharedPreferences) {

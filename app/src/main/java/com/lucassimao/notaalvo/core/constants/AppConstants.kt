@@ -1,4 +1,4 @@
-package com.lucassimao.notaalvo.util
+package com.lucassimao.notaalvo.core.constants
 
 object Constants {
     const val IDEAL_SCORE = 15
