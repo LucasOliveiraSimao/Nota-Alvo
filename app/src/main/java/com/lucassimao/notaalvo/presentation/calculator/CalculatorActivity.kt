@@ -5,17 +5,21 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.lucassimao.notaalvo.R
+import com.lucassimao.notaalvo.core.dialog.showCustomAlertDialog
+import com.lucassimao.notaalvo.core.dialog.showRatingDialog
+import com.lucassimao.notaalvo.core.extensions.shareApp
+import com.lucassimao.notaalvo.data.analytics.AnalyticsEvents
+import com.lucassimao.notaalvo.data.analytics.AnalyticsManager
+import com.lucassimao.notaalvo.data.preferences.AppPreferences
 import com.lucassimao.notaalvo.databinding.ActivityCalculatorBinding
-import com.lucassimao.notaalvo.data.model.ScoreResult
-import com.lucassimao.notaalvo.preferences.AppPreferences
-import com.lucassimao.notaalvo.presentation.ads.AdManager
+import com.lucassimao.notaalvo.domain.model.ScoreResult
+import com.lucassimao.notaalvo.domain.model.ScoreStatus
+import com.lucassimao.notaalvo.presentation.ads.BannerAdHelper
 import com.lucassimao.notaalvo.presentation.review.FeedbackManager
-import com.lucassimao.notaalvo.util.ScoreStatus
-import com.lucassimao.notaalvo.util.extensions.shareApp
-import com.lucassimao.notaalvo.util.extensions.showCustomAlertDialog
-import com.lucassimao.notaalvo.util.extensions.showRatingDialog
-import com.lucassimao.notaalvo.util.inflateMenu
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -27,20 +31,24 @@ class CalculatorActivity : AppCompatActivity() {
     private val appPreferences: AppPreferences by inject()
     private val feedbackManager: FeedbackManager by inject()
     private val calculatorViewModel: CalculatorViewModel by viewModel()
-    private val adManager: AdManager by inject {
+    private val bannerAdHelper: BannerAdHelper by inject {
         parametersOf(this, findViewById<ViewGroup>(R.id.adViewContainer))
     }
+    private val analyticsManager: AnalyticsManager by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalculatorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adManager.initializeAds()
+        setupRemoteConfig()
+
+        analyticsManager.logEvent(AnalyticsEvents.SCREEN_CALCULATOR)
+
+        bannerAdHelper.initializeAds()
         setupUI()
         handleAppUsage()
         observeUserScore()
-
     }
 
     private fun handleAppUsage() {
@@ -50,12 +58,15 @@ class CalculatorActivity : AppCompatActivity() {
                 openRating = {
                     feedbackManager.openAppRating()
                     appPreferences.setUserRated()
+                    analyticsManager.logEvent(AnalyticsEvents.OPEN_RATING)
                 },
                 notRating = {
                     appPreferences.setFeedbackDialogNotToShow()
+                    analyticsManager.logEvent(AnalyticsEvents.NOT_RATING)
                 },
                 laterRating = {
                     appPreferences.resetAppUseCountIfNeeded()
+                    analyticsManager.logEvent(AnalyticsEvents.LATER_RATING)
                 }
             )
         }
@@ -94,6 +105,7 @@ class CalculatorActivity : AppCompatActivity() {
 
     private fun setupEqualsButton() {
         binding.btnEquals.setOnClickListener {
+            analyticsManager.logEvent(AnalyticsEvents.BUTTON_CALCULATE)
             val score = calculatorViewModel.userScore.value
             score?.let {
                 val scoreResult = calculatorViewModel.getEvaluateScore(score)
@@ -112,28 +124,36 @@ class CalculatorActivity : AppCompatActivity() {
         return when (scoreResult.status) {
             ScoreStatus.INVALID -> return
             ScoreStatus.APPROVED -> showCustomAlertDialog(
-                scoreResult.titleResId!!,
                 scoreResult.messageResId!!,
                 scoreResult.examScore.toString()
-            ) { clearUserScoreAndTextView() }
+            ) {
+                analyticsManager.logEvent(AnalyticsEvents.APPROVED)
+                clearUserScoreAndTextView()
+            }
 
             ScoreStatus.NEEDS_FINAL_EXAM -> showCustomAlertDialog(
-                scoreResult.titleResId!!,
                 scoreResult.messageResId!!,
                 scoreResult.examScore.toString()
-            ) { clearUserScoreAndTextView() }
+            ) {
+                analyticsManager.logEvent(AnalyticsEvents.NEEDS_FINAL_EXAM)
+                clearUserScoreAndTextView()
+            }
 
             ScoreStatus.NEEDS_EXAM_FOR_APPROVAL -> showCustomAlertDialog(
-                scoreResult.titleResId!!,
                 scoreResult.messageResId!!,
                 calculatorViewModel.getCalculateScore(scoreResult.examScore)
-            ) { clearUserScoreAndTextView() }
+            ) {
+                analyticsManager.logEvent(AnalyticsEvents.NEEDS_EXAM_FOR_APPROVAL)
+                clearUserScoreAndTextView()
+            }
 
             ScoreStatus.FAILED -> showCustomAlertDialog(
-                scoreResult.titleResId!!,
                 scoreResult.messageResId!!,
                 scoreResult.examScore.toString()
-            ) { clearUserScoreAndTextView() }
+            ) {
+                analyticsManager.logEvent(AnalyticsEvents.FAILED)
+                clearUserScoreAndTextView()
+            }
 
             null -> return
         }
@@ -144,7 +164,7 @@ class CalculatorActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        inflateMenu(R.menu.menu, menu, menuInflater)
+        menuInflater.inflate(R.menu.menu, menu)
         return true
     }
 
@@ -155,7 +175,33 @@ class CalculatorActivity : AppCompatActivity() {
                 getString(R.string.share_app_via)
             )
         }
+        analyticsManager.logEvent(AnalyticsEvents.SHARE_APP)
+
         return super.onOptionsItemSelected(item)
     }
+
+    private fun setupRemoteConfig() {
+        val remoteConfig = Firebase.remoteConfig
+
+        val configSettings = remoteConfigSettings {
+            minimumFetchIntervalInSeconds = 3600
+        }
+
+        remoteConfig.setConfigSettingsAsync(configSettings)
+        remoteConfig.setDefaultsAsync(mapOf("nota_input_placeholder" to "0"))
+
+        remoteConfig.fetchAndActivate().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val placeholder = remoteConfig.getString("nota_input_placeholder")
+                binding.txtResult.setText(placeholder)
+
+                analyticsManager.logEvent(
+                    AnalyticsEvents.NOTA_INPUT_PLACEHOLDER,
+                    mapOf("placeholder" to placeholder)
+                )
+            }
+        }
+    }
+
 
 }
