@@ -12,7 +12,6 @@
         android:background="@android:color/transparent"
         android:enabled="false"
         android:maxLength="4"
-        android:hint="@string/enter_your_average"
         android:importantForAutofill="no"
         android:inputType="numberDecimal" />
 
