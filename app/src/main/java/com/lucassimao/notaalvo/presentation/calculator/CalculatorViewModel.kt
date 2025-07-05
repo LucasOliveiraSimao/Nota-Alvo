@@ -3,18 +3,18 @@ package com.lucassimao.notaalvo.presentation.calculator
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.lucassimao.notaalvo.data.model.ScoreResult
+import com.lucassimao.notaalvo.core.extensions.convertToDoubleOrZero
+import com.lucassimao.notaalvo.domain.model.ScoreResult
 import com.lucassimao.notaalvo.domain.usecase.CalculateScoreUseCase
 import com.lucassimao.notaalvo.domain.usecase.EvaluateScoreUseCase
-import com.lucassimao.notaalvo.util.extensions.convertToDoubleOrZero
 
 class CalculatorViewModel(
     private val calculateScoreUseCase: CalculateScoreUseCase,
     private val evaluateScoreUseCase: EvaluateScoreUseCase
 ) : ViewModel() {
 
-    private var _userScore = MutableLiveData("")
-    val userScore: LiveData<String> get() = _userScore
+    private val _userScore = MutableLiveData("")
+    val userScore: LiveData<String> = _userScore
 
     fun getEvaluateScore(score: String): ScoreResult {
         return evaluateScoreUseCase.evaluateScore(score.convertToDoubleOrZero())
