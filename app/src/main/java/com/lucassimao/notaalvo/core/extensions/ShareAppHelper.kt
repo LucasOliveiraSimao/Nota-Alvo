@@ -1,4 +1,4 @@
-package com.lucassimao.notaalvo.util.extensions
+package com.lucassimao.notaalvo.core.extensions
 
 import android.app.Activity
 import android.content.Intent
