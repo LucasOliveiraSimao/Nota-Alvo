@@ -2,7 +2,6 @@
     <string name="app_name">Nota Alvo</string>
 
     <!-- Mensagens de feedback -->
-    <string name="congratulation_message">Parabéns</string>
     <string name="warning_message">Aviso</string>
     <string name="msg_reprovado">Reprovado</string>
 
@@ -11,6 +10,7 @@
     <string name="equals">CAL</string>
     <string name="erase_all">CE</string>
     <string name="erase">DEL</string>
+    <string name="point">.</string>
 
     <!-- Números -->
     <string name="zero">0</string>
@@ -25,14 +25,12 @@
     <string name="number_9">9</string>
 
     <!-- Mensagens de feedback de aprovação/reprovação -->
-    <string name="approval_message">Você passou na disciplina.</string>
-    <string name="final_exam_requirement_message">Apenas os alunos que obtiverem média igual ou superior a 8,00 estarão
-        dispensados da Prova Final. Alunos com notas abaixo de 8,00 não terão essa dispensa e, caso
-        optem por não realizar a Prova Final, receberão nota zero.</string>
-    <string name="rejection_message">Lamentavelmente, as chances de você ser aprovado são inexistentes.</string>
+    <string name="approval_message">Parabéns! \n Você foi aprovado na disciplina. 🎉</string>
+    <string name="final_exam_requirement_message">🎓 Apenas os alunos que alcançarem média igual ou superior a 8,00 estarão dispensados da Prova Final. Aqueles com notas abaixo desse valor não terão essa dispensa e, caso optem por não realizar a Prova Final, receberão nota zero.</string>
+    <string name="rejection_message">Infelizmente, suas chances de aprovação são nulas. 😞</string>
 
     <!-- Mensagem com a nota necessária para a Prova Final -->
-    <string name="final_exam_requirement_note">A nota necessária para a aprovação na Prova Final é: %1$s</string>
+    <string name="final_exam_requirement_note">📢 A nota necessária para a aprovação na Prova Final é: %1$s</string>
 
     <!-- Mensagem Intro 1 -->
     <string name="intro_welcome_title">Bem-vindo \n ao \n Nota Alvo!</string>
@@ -51,12 +49,19 @@
     <!-- Botões de ação -->
     <string name="done">Finalizar</string>
     <string name="skip">Pular</string>
-    <string name="enter_your_average">0</string>
 
     <!-- Compartilhamento -->
-    <string name="share_content">Compartilhar</string>
-    <string name="share_app">Compartilhar</string>
+    <string name="share_content">Confira este app incrível!</string>
+    <string name="share_app">Compartilhar via</string>
     <string name="share_app_via">Compartilhar App via…</string>
-    <string name="point">.</string>
+
+
+    <!--  Avaliação do app  -->
+    <string name="rate_app_title">Avalie o App</string>
+    <string name="rate_app_message">Se você gostou do nosso aplicativo, por favor, avalie-o na Google Play Store. Isso nos ajuda a melhorar e continuar oferecendo um bom serviço.</string>
+    <string name="rate_now">Avaliar</string>
+    <string name="no_thanks">Não, obrigado</string>
+    <string name="later">Mais tarde</string>
+    <string name="invalid_score_message">Nota Inválida</string>
 
 </resources>
