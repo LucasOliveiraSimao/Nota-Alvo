@@ -3,7 +3,9 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 
-    <color name="number_button_color">#000000</color>
+    <color name="number_button_color">#FFFFFF</color>
+
+    <color name="action_button_color">#FFEB3B</color>
 
     <color name="number_button_background">#FEFEFE</color>
 
@@ -11,20 +13,24 @@
 
     <color name="button_pressed_color">#B3BFC0</color>
 
-    <color name="text_view_text_color">#000000</color>
+    <color name="text_view_text_color">#FFFFFF</color>
 
-    <color name="skip_button">#000000</color>
+    <color name="skip_button">#FFFFFF</color>
 
-    <color name="done_text">#000000</color>
+    <color name="done_text">#FFFFFF</color>
 
-    <color name="next_arrow">#000000</color>
+    <color name="next_arrow">#FFFFFF</color>
     <color name="selected_indicator">#000000</color>
     <color name="unselected_indicator">#B3BFC0</color>
 
-    <color name="title_intro_one_color">#000000</color>
-    <color name="description_intro_one_color">#000000</color>
+    <color name="title_intro_one_color">#FFFFFF</color>
+    <color name="description_intro_one_color">#FFFFFF</color>
 
-    <color name="title_intro_two_color">#000000</color>
+    <color name="title_intro_two_color">#FFFFFF</color>
+    <color name="desc_intro_two_color">#FFFFFF</color>
 
-    <color name="title_intro_three_color">#000000</color>
+    <color name="title_intro_three_color">#FFFFFF</color>
+    <color name="desc_intro_three_color">#FFFFFF</color>
+
+    <color name="app_background">#0C1319</color>
 </resources>

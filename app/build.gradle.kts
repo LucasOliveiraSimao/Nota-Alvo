@@ -19,14 +19,14 @@ keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
 android {
     namespace = "com.lucassimao.notaalvo"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.lucassimao.notaalvo"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 37
-        versionName = "3.0.0"
+        versionName = "3.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -79,10 +79,13 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
 dependencies {
+
+    implementation("com.airbnb.android:lottie:3.4.0")
 
     implementation("io.insert-koin:koin-android:3.3.0")
 
@@ -100,6 +103,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.firebase:firebase-config:22.1.2")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -114,4 +118,36 @@ dependencies {
 
     testImplementation("io.mockk:mockk:1.13.5")
     testImplementation("io.mockk:mockk-android:1.13.5")
+}
+
+tasks.register("generateProjectTree") {
+    group = "documentation"
+    description = "Gera um arquivo com a árvore de diretórios da pasta 'notaalvo'."
+
+    val outputFile = layout.buildDirectory.file("projectTree.txt")
+
+    doLast {
+        outputFile.get().asFile.printWriter().use { writer ->
+
+            fun walk(dir: File, prefix: String = "") {
+                dir.listFiles()?.sortedBy { it.name }?.forEach { file ->
+                    writer.println("$prefix${if (file.isDirectory) "📁" else "📄"} ${file.name}")
+                    if (file.isDirectory) {
+                        walk(file, "$prefix    ")
+                    }
+                }
+            }
+
+            val targetDir = file("src/main/java/com/lucassimao/notaalvo")
+
+            if (targetDir.exists()) {
+                writer.println("📁 notaalvo")
+                walk(targetDir, "    ")
+            } else {
+                println("Diretório alvo não encontrado: ${targetDir.path}")
+            }
+        }
+
+        println("Árvore de pastas gerada em: ${outputFile.get().asFile.path}")
+    }
 }

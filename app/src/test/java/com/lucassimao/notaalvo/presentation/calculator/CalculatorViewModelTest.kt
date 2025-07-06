@@ -3,10 +3,10 @@ package com.lucassimao.notaalvo.presentation.calculator
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.lucassimao.notaalvo.R
 import com.lucassimao.notaalvo.domain.model.ScoreResult
+import com.lucassimao.notaalvo.domain.model.ScoreStatus
 import com.lucassimao.notaalvo.domain.usecase.CalculateScoreUseCase
 import com.lucassimao.notaalvo.domain.usecase.EvaluateScoreUseCase
 import com.lucassimao.notaalvo.getValueForTest
-import com.lucassimao.notaalvo.util.ScoreStatus
 import io.mockk.every
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
@@ -34,7 +34,6 @@ class CalculatorViewModelTest{
     fun `test getEvaluateScore returns APPROVED for score 9`() {
         val score = "9.0"
         val expectedResult = ScoreResult(
-            R.string.congratulation_message,
             R.string.approval_message,
             ScoreStatus.APPROVED,
             null
@@ -52,7 +51,6 @@ class CalculatorViewModelTest{
         val score = "7.7"
         val expectedResult = ScoreResult(
             R.string.warning_message,
-            R.string.final_exam_requirement_message,
             ScoreStatus.NEEDS_FINAL_EXAM,
             null
         )
@@ -69,7 +67,6 @@ class CalculatorViewModelTest{
         val score = "invalid"
         val expectedResult = ScoreResult(
             R.string.msg_reprovado,
-            R.string.rejection_message,
             ScoreStatus.FAILED,
             null
         )

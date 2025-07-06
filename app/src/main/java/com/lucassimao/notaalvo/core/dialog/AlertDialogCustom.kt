@@ -1,4 +1,4 @@
-package com.lucassimao.notaalvo.util.extensions
+package com.lucassimao.notaalvo.core.dialog
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -11,7 +11,6 @@ import com.lucassimao.notaalvo.R
 
 @SuppressLint("InflateParams")
 fun Activity.showCustomAlertDialog(
-    @StringRes title: Int,
     @StringRes message: Int,
     score: String?,
     close: () -> Unit

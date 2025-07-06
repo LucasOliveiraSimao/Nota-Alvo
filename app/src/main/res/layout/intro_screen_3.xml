@@ -1,43 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/guideline_top_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.05" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/intro3_tvTitle"
         style="@style/AppTitleIntroThree"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/intro_manual_grade_calculation_instruction"
+        android:text="@string/label_ready_to_start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toTopOf="@+id/guideline_top_margin" />
 
-    <ImageView
-        style="@style/AppImageIntroThree"
+    <TextView
+        android:id="@+id/intro3_tvDesc1"
+        style="@style/AppDescIntroThree"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        android:layout_height="wrap_content"
+        android:text="@string/label_track_your_performance"
+        app:layout_constraintBottom_toTopOf="@id/intro3_guideline_animation_top"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
+        android:id="@+id/intro3_guideline_animation_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.90" />
+        app:layout_constraintGuide_percent="0.30" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/intro3_animationView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/intro3_guideline_animation_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/intro3_guideline_animation_top"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/animation_approved" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/intro3_guideline_animation_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.70" />
+
+    <TextView
+        android:id="@+id/intro3_tvDesc2"
+        style="@style/AppDescIntroThree"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/label_we_are_here_to_help_you"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/intro3_guideline_animation_bottom" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

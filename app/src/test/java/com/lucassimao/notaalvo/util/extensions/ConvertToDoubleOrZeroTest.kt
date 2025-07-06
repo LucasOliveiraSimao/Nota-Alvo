@@ -1,5 +1,6 @@
 package com.lucassimao.notaalvo.util.extensions
 
+import com.lucassimao.notaalvo.core.extensions.convertToDoubleOrZero
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
