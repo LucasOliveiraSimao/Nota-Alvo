@@ -1,5 +1,5 @@
 # Nota Alvo - Calculadora de Nota para Prova Final
-Nota Alvo é um aplicativo Android projetado para auxiliar os alunos da Universidade Federal do Amazonas (UFAM) a calcular a nota necessária na prova final de qualquer disciplina para alcançar a aprovação. Este aplicativo, disponível na [Play Store](https://play.google.com/store/apps/details?id=com.lucassimao.notaalvo), já acumulou mais de 100 downloads e se tornou uma ferramenta indispensável para os estudantes da UFAM que buscam acompanhar seu desempenho acadêmico.
+Nota Alvo é um aplicativo Android projetado para auxiliar os alunos da Universidade Federal do Amazonas (UFAM) a calcular a nota necessária na prova final de qualquer disciplina para alcançar a aprovação. Este aplicativo, disponível na [Play Store](https://play.google.com/store/apps/details?id=com.lucassimao.notaalvo), já acumulou mais de 500 downloads e se tornou uma ferramenta indispensável para os estudantes da UFAM que buscam acompanhar seu desempenho acadêmico.
 
 ## Projeto desenvolvido utilizando:
 
